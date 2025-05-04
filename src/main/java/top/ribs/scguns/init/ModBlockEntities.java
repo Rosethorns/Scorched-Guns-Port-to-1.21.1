@@ -1,10 +1,10 @@
 package top.ribs.scguns.init;
 
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.Holder;
 import top.ribs.scguns.blockentity.*;
 
 

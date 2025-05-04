@@ -37,7 +37,7 @@ public class SandbagBlock extends Block {
     private static final VoxelShape SHAPE_TRIPLE_EAST_WEST = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 16.0D, 16.0D);
 
     public SandbagBlock(Properties properties) {
-        super(BlockBehaviour.Properties.copy(Blocks.SAND));
+        super(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND));
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, SandbagType.SINGLE)
                 .setValue(FACING, Direction.NORTH));
