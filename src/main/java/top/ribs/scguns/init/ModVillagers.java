@@ -7,7 +7,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.Holder;
 import top.ribs.scguns.Reference;
 
 public class ModVillagers {
@@ -16,11 +16,11 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
             DeferredRegister.create(NeoForgeRegistries.VILLAGER_PROFESSIONS, Reference.MOD_ID);
 
-    public static final RegistryObject<PoiType> GUNSMITH_POI = POI_TYPES.register("gunsmith_poi",
+    public static final Holder<PoiType> GUNSMITH_POI = POI_TYPES.register("gunsmith_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocks.GUN_BENCH.get().getStateDefinition().getPossibleStates()),
                     1, 1));
 
-    public static final RegistryObject<VillagerProfession> GUNSMITH =
+    public static final Holder<VillagerProfession> GUNSMITH =
             VILLAGER_PROFESSIONS.register("gunsmith", () -> new VillagerProfession("gunsmith",
                     holder -> holder.get() == GUNSMITH_POI.get(), holder -> holder.get() == GUNSMITH_POI.get(),
                     ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_ARMORER));

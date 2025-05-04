@@ -6,7 +6,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.Holder;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.world.GeothermalVentFeature;
 import top.ribs.scguns.world.SulfurVentFeature;
@@ -16,10 +16,10 @@ public class ModFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(NeoForgeRegistries.FEATURES, Reference.MOD_ID);
 
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEOTHERMAL_VENT_FEATURE = FEATURES.register("geothermal_vent",
+    public static final Holder<Feature<NoneFeatureConfiguration>> GEOTHERMAL_VENT_FEATURE = FEATURES.register("geothermal_vent",
             () -> new GeothermalVentFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SULFUR_VENT_FEATURE = FEATURES.register("sulfur_vent",
+    public static final Holder<Feature<NoneFeatureConfiguration>> SULFUR_VENT_FEATURE = FEATURES.register("sulfur_vent",
             () -> new SulfurVentFeature(NoneFeatureConfiguration.CODEC));
 
 

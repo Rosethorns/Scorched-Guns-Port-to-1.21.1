@@ -18,7 +18,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.Holder;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.client.GunItemStackRenderer;
 import top.ribs.scguns.client.KeyBinds;
