@@ -3,7 +3,7 @@ package top.ribs.scguns.util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class RarityUtils {
     }
 
     public static Rarity GetRarityFromItem(Item item, Rarity old) {
-        var items = ForgeRegistries.ITEMS;
+        var items = NeoForgeRegistries.ITEMS;
         if (items.containsValue(item)) {
             return GetRarityFromResourceLocation(items.getKey(item), old);
         }

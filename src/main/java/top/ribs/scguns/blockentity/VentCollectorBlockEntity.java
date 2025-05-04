@@ -15,12 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.block.GeothermalVentBlock;
 import top.ribs.scguns.block.SulfurVentBlock;
@@ -200,7 +200,7 @@ public class VentCollectorBlockEntity extends BlockEntity implements MenuProvide
         BlockPos adjacentPos = pos.relative(facing);
         BlockEntity adjacentEntity = level.getBlockEntity(adjacentPos);
         if (adjacentEntity != null) {
-            IItemHandler adjacentHandler = adjacentEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, facing.getOpposite()).orElse(null);
+            IItemHandler adjacentHandler = adjacentEntity.getCapability(Capabilities.ITEM_HANDLER, facing.getOpposite()).orElse(null);
             for (int i = 1; i <= 3; i++) {
                 ItemStack stack = itemHandler.getStackInSlot(i);
                 if (!stack.isEmpty()) {
@@ -238,7 +238,7 @@ public class VentCollectorBlockEntity extends BlockEntity implements MenuProvide
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             return itemHandlerOptional.cast();
         }
         return super.getCapability(cap, side);

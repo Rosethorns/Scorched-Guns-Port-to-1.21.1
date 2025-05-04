@@ -7,7 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.init.ModParticleTypes;
 
 /**
@@ -64,6 +64,6 @@ public class TrailData implements ParticleOptions
     @Override
     public String writeToString()
     {
-        return ForgeRegistries.PARTICLE_TYPES.getKey(this.getType()) + " " + this.enchanted;
+        return NeoForgeRegistries.PARTICLE_TYPES.getKey(this.getType()) + " " + this.enchanted;
     }
 }

@@ -16,24 +16,21 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.ribs.scguns.block.PoweredMaceratorBlock;
-import top.ribs.scguns.client.screen.MaceratorMenu;
 import top.ribs.scguns.client.screen.MaceratorRecipe;
 import top.ribs.scguns.client.screen.PoweredMaceratorMenu;
 import top.ribs.scguns.init.ModBlockEntities;
@@ -145,7 +142,7 @@ public class PoweredMaceratorBlockEntity extends BlockEntity implements MenuProv
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             if (side == null) {
                 return lazyItemHandler.cast();
             } else if (side == Direction.DOWN) {
@@ -156,7 +153,7 @@ public class PoweredMaceratorBlockEntity extends BlockEntity implements MenuProv
                 return LazyOptional.of(() -> new InputItemHandler(itemHandler)).cast();
             }
         }
-        if (cap == ForgeCapabilities.ENERGY) {
+        if (cap == Capabilities.ENERGY) {
             return energy.cast();
         }
         return super.getCapability(cap, side);

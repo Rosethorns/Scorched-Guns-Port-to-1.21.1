@@ -26,12 +26,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 import top.ribs.scguns.ScorchedGuns;
-import top.ribs.scguns.attributes.SCAttributes;
 import top.ribs.scguns.entity.config.CogMinionConfig;
 import top.ribs.scguns.entity.weapon.ScGunsWeapon;
 import top.ribs.scguns.interfaces.IEntityCanReload;
@@ -134,7 +133,7 @@ public class CogMinionEntity extends Monster implements IEntityCanReload {
         if (random.nextFloat() < config.getSpawnWithItemChance()) {
             CogMinionConfig.ItemSpawnData spawnData = selectItemBasedOnChance(config.getItems(), random);
             if (spawnData != null) {
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(spawnData.getItem()));
+                Item item = NeoForgeRegistries.ITEMS.getValue(new ResourceLocation(spawnData.getItem()));
                 if (item != null) {
                     ItemStack itemStack = new ItemStack(item);
                     if (itemStack.isDamageableItem() && spawnData.getMinDurability() != null && spawnData.getMaxDurability() != null) {

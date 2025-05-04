@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.common.ProjectileManager;
@@ -84,7 +84,7 @@ public class ScGunsWeapon implements IWeapon {
     @Override
     public SoundEvent getShootSound() {
         if (fireSound == null)
-            fireSound = ForgeRegistries.SOUND_EVENTS.getValue(
+            fireSound = NeoForgeRegistries.SOUND_EVENTS.getValue(
                     GunModifierHelper.isSilencedFire(gunStack) ? gun.getSounds().getSilencedFire() :
                             gunStack.isEnchanted() ? gun.getSounds().getEnchantedFire() :
                                     gun.getSounds().getFire()
@@ -95,7 +95,7 @@ public class ScGunsWeapon implements IWeapon {
     @Override
     public SoundEvent getLoadSound() {
         if (loadSound == null)
-            loadSound = ForgeRegistries.SOUND_EVENTS.getValue(gun.getSounds().getReload());
+            loadSound = NeoForgeRegistries.SOUND_EVENTS.getValue(gun.getSounds().getReload());
         return loadSound;
     }
 
@@ -107,7 +107,7 @@ public class ScGunsWeapon implements IWeapon {
         Gun.Projectile projectileProps = gun.getProjectile();
         ProjectileEntity[] spawnedProjectiles = new ProjectileEntity[count];
         for (int i = 0; i < count; ++i) {
-            ResourceLocation projectileItemLocation = ForgeRegistries.ITEMS.getKey(projectileProps.getItem());
+            ResourceLocation projectileItemLocation = NeoForgeRegistries.ITEMS.getKey(projectileProps.getItem());
             IProjectileFactory factory = ProjectileManager.getInstance().getFactory(projectileItemLocation);
             ProjectileEntity projectileEntity = factory.create(level, shooter, gunStack, (GunItem) gunStack.getItem(), gun);
             projectileEntity.setWeapon(gunStack);

@@ -22,16 +22,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.client.screen.PolarGeneratorMenu;
@@ -153,7 +153,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return slot == 0 && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+                return slot == 0 && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
             }
 
             @Override
@@ -173,7 +173,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             if (side == null) {
                 return manualHandler.cast();
             } else if (side == Direction.UP) {
@@ -182,7 +182,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
                 return sideHandler.cast();
             }
         }
-        if (cap == ForgeCapabilities.ENERGY) {
+        if (cap == Capabilities.ENERGY) {
             if (side == null) {
                 return internalEnergy.cast();
             } else {
@@ -246,7 +246,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
             for (Direction direction : Direction.values()) {
                 BlockEntity adjacentEntity = level.getBlockEntity(pos.relative(direction));
                 if (adjacentEntity != null) {
-                    adjacentEntity.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).ifPresent(handler -> {
+                    adjacentEntity.getCapability(Capabilities.ENERGY, direction.getOpposite()).ifPresent(handler -> {
                         if (handler.canReceive()) {
                             // Use the config value here as well for consistent energy transfer
                             int extracted = blockEntity.energyStorage.extractEnergy(
@@ -264,7 +264,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
             if (blockEntity.burnTime == 0 && blockEntity.energyStorage.getEnergyStored() < blockEntity.energyStorage.getMaxEnergyStored()) {
                 ItemStack fuelStack = blockEntity.itemHandler.getStackInSlot(0);
                 if (!fuelStack.isEmpty()) {
-                    int burnTime = ForgeHooks.getBurnTime(fuelStack, RecipeType.SMELTING);
+                    int burnTime = CommonHooks.getBurnTime(fuelStack, RecipeType.SMELTING);
                     if (burnTime > 0) {
                         blockEntity.burnTime = burnTime;
                         blockEntity.burnTimeTotal = burnTime;
@@ -320,7 +320,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (slot == 0 && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
+            if (slot == 0 && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
                 return itemHandler.insertItem(slot, stack, simulate);
             }
             return stack;
@@ -338,7 +338,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return slot == 0 && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+            return slot == 0 && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
         }
     }
 
@@ -366,7 +366,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (slot == 0 && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
+            if (slot == 0 && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
                 return itemHandler.insertItem(slot, stack, simulate);
             }
             return stack;
@@ -384,7 +384,7 @@ public class PolarGeneratorBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return slot == 0 && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+            return slot == 0 && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
         }
     }
 }

@@ -2,16 +2,10 @@ package top.ribs.scguns.network.message;
 
 import com.mrcrayfish.framework.api.network.MessageContext;
 import com.mrcrayfish.framework.api.network.message.PlayMessage;
-import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
-import top.ribs.scguns.item.GunItem;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.DistExecutor;
 import top.ribs.scguns.network.ClientMessageHandler;
-import top.ribs.scguns.util.GunModifierHelper;
 
 public class S2CMessageUpdateAmmo extends PlayMessage<S2CMessageUpdateAmmo> {
     private int ammoCount;

@@ -20,10 +20,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.block.ThermolithBlock;
 import top.ribs.scguns.client.screen.widget.ThermolithMenu;
@@ -31,7 +31,6 @@ import top.ribs.scguns.init.ModBlockEntities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class ThermolithBlockEntity extends BlockEntity implements MenuProvider {
     private static final ResourceLocation THERMOLITH_INGREDIENT_TAG = new ResourceLocation("scguns", "thermolith_ingredient");
@@ -118,8 +117,8 @@ public class ThermolithBlockEntity extends BlockEntity implements MenuProvider {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull net.minecraftforge.common.capabilities.Capability<T> cap, @Nullable net.minecraft.core.Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+    public <T> LazyOptional<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable net.minecraft.core.Direction side) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             return handler.cast();
         }
         return super.getCapability(cap, side);

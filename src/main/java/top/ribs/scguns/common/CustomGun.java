@@ -3,7 +3,7 @@ package top.ribs.scguns.common;
 import top.ribs.scguns.annotation.Ignored;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 
 /**
  * Author: MrCrayfish

@@ -23,13 +23,13 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.ribs.scguns.block.MechanicalPressBlock;
@@ -151,7 +151,7 @@ public class MechanicalPressBlockEntity extends BlockEntity implements MenuProvi
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             if (side == null) {
                 return lazyItemHandler.cast();
             } else if (side == Direction.DOWN) {
@@ -378,12 +378,12 @@ public class MechanicalPressBlockEntity extends BlockEntity implements MenuProvi
 
     private boolean canBurnFuel() {
         ItemStack fuelStack = itemHandler.getStackInSlot(FUEL_SLOT);
-        return !fuelStack.isEmpty() && ForgeHooks.getBurnTime(fuelStack, RecipeType.SMELTING) > 0;
+        return !fuelStack.isEmpty() && CommonHooks.getBurnTime(fuelStack, RecipeType.SMELTING) > 0;
     }
 
     private void burnFuel() {
         ItemStack fuelStack = itemHandler.getStackInSlot(FUEL_SLOT);
-        this.burnTime = ForgeHooks.getBurnTime(fuelStack, RecipeType.SMELTING);
+        this.burnTime = CommonHooks.getBurnTime(fuelStack, RecipeType.SMELTING);
         this.maxBurnTime = this.burnTime;
         if (fuelStack.hasCraftingRemainingItem()) {
             itemHandler.setStackInSlot(FUEL_SLOT, fuelStack.getCraftingRemainingItem());
@@ -426,7 +426,7 @@ public class MechanicalPressBlockEntity extends BlockEntity implements MenuProvi
 
             @Override
             public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-                if (slot == FUEL_SLOT && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
+                if (slot == FUEL_SLOT && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
                     return itemHandler.insertItem(slot, stack, simulate);
                 }
                 return stack;
@@ -444,7 +444,7 @@ public class MechanicalPressBlockEntity extends BlockEntity implements MenuProvi
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return slot == FUEL_SLOT && ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+                return slot == FUEL_SLOT && CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
             }
         }
 

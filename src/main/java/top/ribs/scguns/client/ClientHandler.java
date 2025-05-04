@@ -15,15 +15,15 @@ import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.util.ObfuscationReflectionHelper;
 import org.lwjgl.glfw.GLFW;
 import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.Reference;
@@ -31,8 +31,6 @@ import top.ribs.scguns.client.handler.*;
 import top.ribs.scguns.client.render.block.*;
 import top.ribs.scguns.client.render.curios.AmmoBoxRenderer;
 import top.ribs.scguns.client.render.entity.TurretProjectileRenderer;
-import top.ribs.scguns.client.render.gun.ModelOverrides;
-import top.ribs.scguns.client.render.gun.model.*;
 import top.ribs.scguns.client.screen.*;
 import top.ribs.scguns.client.screen.VentCollectorScreen;
 import top.ribs.scguns.client.screen.widget.ThermolithScreen;
@@ -65,7 +63,7 @@ public class ClientHandler {
         bus.addListener(ClientHandler::onRegisterReloadListener);
         bus.addListener(ClientHandler::registerAdditional);
         bus.addListener(ClientHandler::onClientSetup);
-        MinecraftForge.EVENT_BUS.register(HUDRenderHandler.class);
+        NeoForge.EVENT_BUS.register(HUDRenderHandler.class);
     }
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
@@ -123,7 +121,7 @@ public class ClientHandler {
         registerAmmoCountProperty(ModItems.DISHES_POUCH.get());
         registerAmmoCountProperty(ModItems.ROCK_POUCH.get());
         registerAmmoCountProperty(ModItems.CREATIVE_AMMO_BOX.get());
-        MinecraftForge.EVENT_BUS.register(new PlayerModelHandler());
+        NeoForge.EVENT_BUS.register(new PlayerModelHandler());
         MenuScreens.register(ModMenuTypes.MACERATOR_MENU.get(), MaceratorScreen::new);
         MenuScreens.register(ModMenuTypes.POWERED_MACERATOR_MENU.get(), PoweredMaceratorScreen::new);
         MenuScreens.register(ModMenuTypes.LIGHTING_BATTERY_MENU.get(), LightningBatteryScreen::new);
@@ -174,15 +172,15 @@ public class ClientHandler {
         return ModMuzzleFlashes.getMuzzleFlashTexture(flashType);
     }
     public static void setup() {
-        MinecraftForge.EVENT_BUS.register(AimingHandler.get());
-        MinecraftForge.EVENT_BUS.register(BulletTrailRenderingHandler.get());
-        MinecraftForge.EVENT_BUS.register(CrosshairHandler.get());
-        MinecraftForge.EVENT_BUS.register(GunRenderingHandler.get());
-        MinecraftForge.EVENT_BUS.register(RecoilHandler.get());
-        MinecraftForge.EVENT_BUS.register(ReloadHandler.get());
-        MinecraftForge.EVENT_BUS.register(ShootingHandler.get());
-        MinecraftForge.EVENT_BUS.register(SoundHandler.get());
-        MinecraftForge.EVENT_BUS.register(new PlayerModelHandler());
+        NeoForge.EVENT_BUS.register(AimingHandler.get());
+        NeoForge.EVENT_BUS.register(BulletTrailRenderingHandler.get());
+        NeoForge.EVENT_BUS.register(CrosshairHandler.get());
+        NeoForge.EVENT_BUS.register(GunRenderingHandler.get());
+        NeoForge.EVENT_BUS.register(RecoilHandler.get());
+        NeoForge.EVENT_BUS.register(ReloadHandler.get());
+        NeoForge.EVENT_BUS.register(ShootingHandler.get());
+        NeoForge.EVENT_BUS.register(SoundHandler.get());
+        NeoForge.EVENT_BUS.register(new PlayerModelHandler());
 
         if (ScorchedGuns.controllableLoaded) {
             ControllerHandler.init();

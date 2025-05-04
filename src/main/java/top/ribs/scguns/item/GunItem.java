@@ -8,9 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -18,11 +16,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.client.GunItemStackRenderer;
 import top.ribs.scguns.client.KeyBinds;
@@ -125,7 +121,7 @@ public class GunItem extends Item implements IColored, IMeta {
         }
         ResourceLocation effectLocation = modifiedGun.getProjectile().getImpactEffect();
         if (effectLocation != null) {
-            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+            MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
             if (effect != null) {
                 tooltip.add(Component.translatable("info.scguns.impact_effect").withStyle(ChatFormatting.GRAY)
                         .append(": ")

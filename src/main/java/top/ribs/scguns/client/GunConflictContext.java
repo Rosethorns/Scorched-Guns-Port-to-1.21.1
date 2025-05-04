@@ -2,7 +2,7 @@ package top.ribs.scguns.client;
 
 import com.mrcrayfish.controllable.client.binding.IBindingContext;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import top.ribs.scguns.item.GunItem;
 
 

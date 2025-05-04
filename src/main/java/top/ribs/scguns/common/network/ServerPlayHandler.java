@@ -28,13 +28,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.client.handler.BeamHandler;
@@ -103,7 +102,7 @@ public class ServerPlayHandler {
         Gun modifiedGun = item.getModifiedGun(heldItem);
         if (modifiedGun == null) return;
 
-        if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
+        if (NeoForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
             return;
         player.setYRot(Mth.wrapDegrees(message.getRotationYaw()));
         player.setXRot(Mth.clamp(message.getRotationPitch(), -90F, 90F));
@@ -148,7 +147,7 @@ public class ServerPlayHandler {
         if (fireSound != null) {
             playFireSound(player, world, heldItem, modifiedGun, fireSound);
         }
-        MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
+        NeoForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
         player.awardStat(Stats.ITEM_USED.get(item));
     }
 
@@ -187,7 +186,7 @@ public class ServerPlayHandler {
         ProjectileEntity[] spawnedProjectiles = new ProjectileEntity[count];
 
         for (int i = 0; i < count; i++) {
-            IProjectileFactory factory = ProjectileManager.getInstance().getFactory(ForgeRegistries.ITEMS.getKey(projectileProps.getItem()));
+            IProjectileFactory factory = ProjectileManager.getInstance().getFactory(NeoForgeRegistries.ITEMS.getKey(projectileProps.getItem()));
             ProjectileEntity projectileEntity = factory.create(world, player, heldItem, item, modifiedGun);
             projectileEntity.setWeapon(heldItem);
             projectileEntity.setAdditionalDamage(Gun.getAdditionalDamage(heldItem));
@@ -486,8 +485,8 @@ public class ServerPlayHandler {
                     int count = tag.getInt("AmmoCount");
                     tag.putInt("AmmoCount", 0);
 
-                    ResourceLocation id = ForgeRegistries.ITEMS.getKey(gun.getProjectile().getItem());
-                    Item item = ForgeRegistries.ITEMS.getValue(id);
+                    ResourceLocation id = NeoForgeRegistries.ITEMS.getKey(gun.getProjectile().getItem());
+                    Item item = NeoForgeRegistries.ITEMS.getValue(id);
                     if (item == null) return;
 
                     int maxStackSize = item.getMaxStackSize();
@@ -536,8 +535,8 @@ public class ServerPlayHandler {
                 if (currentAmmo > modifiedCapacity) {
                     tag.putInt("AmmoCount", modifiedCapacity);
                     if (!hasCreativeBox) {
-                        ResourceLocation id = ForgeRegistries.ITEMS.getKey(gun.getProjectile().getItem());
-                        Item item = ForgeRegistries.ITEMS.getValue(id);
+                        ResourceLocation id = NeoForgeRegistries.ITEMS.getKey(gun.getProjectile().getItem());
+                        Item item = NeoForgeRegistries.ITEMS.getValue(id);
                         if (item != null) {
                             int residue = currentAmmo - modifiedCapacity;
                             spawnAmmo(player, new ItemStack(item, residue));

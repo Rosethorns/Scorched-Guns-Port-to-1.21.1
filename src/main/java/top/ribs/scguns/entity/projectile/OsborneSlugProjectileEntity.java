@@ -25,20 +25,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.init.ModDamageTypes;
 import top.ribs.scguns.init.ModEnchantments;
 import top.ribs.scguns.init.ModParticleTypes;
-import top.ribs.scguns.interfaces.IDamageable;
 import top.ribs.scguns.item.GunItem;
 import top.ribs.scguns.network.PacketHandler;
 import top.ribs.scguns.network.message.S2CMessageBlood;
 import top.ribs.scguns.network.message.S2CMessageProjectileHitBlock;
 import top.ribs.scguns.network.message.S2CMessageProjectileHitEntity;
-import top.ribs.scguns.util.GunEnchantmentHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -264,7 +262,7 @@ public class OsborneSlugProjectileEntity extends ProjectileEntity {
                 effectChance = Math.min(1.0f, effectChance * (1.0f + 0.2f * (1.0f - (float)(distanceToShooter / 10.0))));
             }
             if (this.random.nextFloat() < effectChance) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     int duration = this.getProjectile().getImpactEffectDuration();
                     if (headshot) {

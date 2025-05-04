@@ -6,13 +6,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
-import top.ribs.scguns.blockentity.MaceratorBlockEntity;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import top.ribs.scguns.blockentity.PoweredMaceratorBlockEntity;
 import top.ribs.scguns.init.ModBlocks;
 
@@ -43,7 +40,7 @@ public class PoweredMaceratorMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
             // Positioning the input slots in a cube shape
             this.addSlot(new SlotItemHandler(handler, 0, 44, 27)); // Input 1
             this.addSlot(new SlotItemHandler(handler, 1, 62, 27)); // Input 2

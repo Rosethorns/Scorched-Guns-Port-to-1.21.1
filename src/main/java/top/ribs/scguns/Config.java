@@ -1,9 +1,9 @@
 package top.ribs.scguns;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 import top.ribs.scguns.client.SwayType;
 import top.ribs.scguns.client.render.crosshair.DotRenderMode;
@@ -28,10 +28,10 @@ public class Config
         public final Particle particle;
         public final Controls controls;
         public final Experimental experimental;
-        public final ForgeConfigSpec.BooleanValue hideConfigButton;
-        public final ForgeConfigSpec.EnumValue<ButtonAlignment> buttonAlignment;
+        public final NeoForgeConfigSpec.BooleanValue hideConfigButton;
+        public final NeoForgeConfigSpec.EnumValue<ButtonAlignment> buttonAlignment;
 
-        public Client(ForgeConfigSpec.Builder builder)
+        public Client(NeoForgeConfigSpec.Builder builder)
         {
             builder.push("client");
             {
@@ -52,13 +52,13 @@ public class Config
      */
     public static class Sounds
     {
-        public final ForgeConfigSpec.BooleanValue playSoundWhenHeadshot;
-        public final ForgeConfigSpec.ConfigValue<String> headshotSound;
-        public final ForgeConfigSpec.BooleanValue playSoundWhenCritical;
-        public final ForgeConfigSpec.ConfigValue<String> criticalSound;
-        public final ForgeConfigSpec.DoubleValue impactSoundDistance;
+        public final NeoForgeConfigSpec.BooleanValue playSoundWhenHeadshot;
+        public final NeoForgeConfigSpec.ConfigValue<String> headshotSound;
+        public final NeoForgeConfigSpec.BooleanValue playSoundWhenCritical;
+        public final NeoForgeConfigSpec.ConfigValue<String> criticalSound;
+        public final NeoForgeConfigSpec.DoubleValue impactSoundDistance;
 
-        public Sounds(ForgeConfigSpec.Builder builder)
+        public Sounds(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Control sounds triggered by guns").push("sounds");
             {
@@ -77,34 +77,34 @@ public class Config
      */
     public static class Display
     {
-        public final ForgeConfigSpec.BooleanValue oldAnimations;
-        public final ForgeConfigSpec.ConfigValue<String> crosshair;
-        public final ForgeConfigSpec.BooleanValue displayGunInfo;
-        public final ForgeConfigSpec.BooleanValue immersiveGunInfo;
-        public final ForgeConfigSpec.BooleanValue cinematicGunEffects;
-        public final ForgeConfigSpec.BooleanValue cooldownIndicator;
-        public final ForgeConfigSpec.BooleanValue weaponSway;
-        public final ForgeConfigSpec.DoubleValue swaySensitivity;
-        public final ForgeConfigSpec.EnumValue<SwayType> swayType;
-        public final ForgeConfigSpec.BooleanValue cameraRollEffect;
-        public final ForgeConfigSpec.DoubleValue cameraRollAngle;
-        public final ForgeConfigSpec.BooleanValue restrictCameraRollToWeapons;
-        public final ForgeConfigSpec.BooleanValue sprintAnimation;
-        public final ForgeConfigSpec.DoubleValue bobbingIntensity;
-        public final ForgeConfigSpec.BooleanValue fireLights;
-        public final ForgeConfigSpec.BooleanValue puritySeals;
-        public final ForgeConfigSpec.DoubleValue dynamicCrosshairBaseSpread;
-        public final ForgeConfigSpec.DoubleValue dynamicCrosshairSpreadMultiplier;
-        public final ForgeConfigSpec.DoubleValue dynamicCrosshairReactivity;
-        public final ForgeConfigSpec.EnumValue<DotRenderMode> dynamicCrosshairDotMode;
-        public final ForgeConfigSpec.BooleanValue onlyRenderDotWhileAiming;
-        public final ForgeConfigSpec.DoubleValue dynamicCrosshairDotThreshold;
-        public final ForgeConfigSpec.DoubleValue dynamicCrosshairMaxScale;
-        public final ForgeConfigSpec.BooleanValue renderArms;
+        public final NeoForgeConfigSpec.BooleanValue oldAnimations;
+        public final NeoForgeConfigSpec.ConfigValue<String> crosshair;
+        public final NeoForgeConfigSpec.BooleanValue displayGunInfo;
+        public final NeoForgeConfigSpec.BooleanValue immersiveGunInfo;
+        public final NeoForgeConfigSpec.BooleanValue cinematicGunEffects;
+        public final NeoForgeConfigSpec.BooleanValue cooldownIndicator;
+        public final NeoForgeConfigSpec.BooleanValue weaponSway;
+        public final NeoForgeConfigSpec.DoubleValue swaySensitivity;
+        public final NeoForgeConfigSpec.EnumValue<SwayType> swayType;
+        public final NeoForgeConfigSpec.BooleanValue cameraRollEffect;
+        public final NeoForgeConfigSpec.DoubleValue cameraRollAngle;
+        public final NeoForgeConfigSpec.BooleanValue restrictCameraRollToWeapons;
+        public final NeoForgeConfigSpec.BooleanValue sprintAnimation;
+        public final NeoForgeConfigSpec.DoubleValue bobbingIntensity;
+        public final NeoForgeConfigSpec.BooleanValue fireLights;
+        public final NeoForgeConfigSpec.BooleanValue puritySeals;
+        public final NeoForgeConfigSpec.DoubleValue dynamicCrosshairBaseSpread;
+        public final NeoForgeConfigSpec.DoubleValue dynamicCrosshairSpreadMultiplier;
+        public final NeoForgeConfigSpec.DoubleValue dynamicCrosshairReactivity;
+        public final NeoForgeConfigSpec.EnumValue<DotRenderMode> dynamicCrosshairDotMode;
+        public final NeoForgeConfigSpec.BooleanValue onlyRenderDotWhileAiming;
+        public final NeoForgeConfigSpec.DoubleValue dynamicCrosshairDotThreshold;
+        public final NeoForgeConfigSpec.DoubleValue dynamicCrosshairMaxScale;
+        public final NeoForgeConfigSpec.BooleanValue renderArms;
 
 
 
-        public Display(ForgeConfigSpec.Builder builder)
+        public Display(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Configuration for display related options").push("display");
             {
@@ -144,15 +144,15 @@ public class Config
      */
     public static class Particle
     {
-        public final ForgeConfigSpec.IntValue bulletHoleLifeMin;
-        public final ForgeConfigSpec.IntValue bulletHoleLifeMax;
-        public final ForgeConfigSpec.DoubleValue bulletHoleFadeThreshold;
-        public final ForgeConfigSpec.BooleanValue enableBlood;
-        public final ForgeConfigSpec.DoubleValue impactParticleDistance;
-        public final ForgeConfigSpec.BooleanValue enableWaterImpactParticles;
-        public final ForgeConfigSpec.BooleanValue enableLavaImpactParticles;
+        public final NeoForgeConfigSpec.IntValue bulletHoleLifeMin;
+        public final NeoForgeConfigSpec.IntValue bulletHoleLifeMax;
+        public final NeoForgeConfigSpec.DoubleValue bulletHoleFadeThreshold;
+        public final NeoForgeConfigSpec.BooleanValue enableBlood;
+        public final NeoForgeConfigSpec.DoubleValue impactParticleDistance;
+        public final NeoForgeConfigSpec.BooleanValue enableWaterImpactParticles;
+        public final NeoForgeConfigSpec.BooleanValue enableLavaImpactParticles;
 
-        public Particle(ForgeConfigSpec.Builder builder)
+        public Particle(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to particles").push("particle");
             {
@@ -170,10 +170,10 @@ public class Config
 
     public static class Controls
     {
-        public final ForgeConfigSpec.DoubleValue aimDownSightSensitivity;
-        public final ForgeConfigSpec.BooleanValue flipControls;
+        public final NeoForgeConfigSpec.DoubleValue aimDownSightSensitivity;
+        public final NeoForgeConfigSpec.BooleanValue flipControls;
 
-        public Controls(ForgeConfigSpec.Builder builder)
+        public Controls(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to controls").push("controls");
             {
@@ -186,7 +186,7 @@ public class Config
 
     public static class Experimental
     {
-        public Experimental(ForgeConfigSpec.Builder builder)
+        public Experimental(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Experimental options").push("experimental");
             {
@@ -211,7 +211,7 @@ public class Config
         public final Gunsmith Gunsmith;
         public final Turret turret;
 
-        public Common(ForgeConfigSpec.Builder builder)
+        public Common(NeoForgeConfigSpec.Builder builder)
         {
             builder.push("common");
             {
@@ -236,26 +236,26 @@ public class Config
     public static class Gameplay
     {
         public final Griefing griefing;
-        public final ForgeConfigSpec.BooleanValue enableGunDamage;
-        public final ForgeConfigSpec.BooleanValue enableAttachmentDamage;
-        public  final ForgeConfigSpec.BooleanValue spawnCasings;
-        public final ForgeConfigSpec.DoubleValue growBoundingBoxAmount;
-        public final ForgeConfigSpec.BooleanValue enableHeadShots;
-        public final ForgeConfigSpec.DoubleValue headShotDamageMultiplier;
-        public final ForgeConfigSpec.DoubleValue criticalDamageMultiplier;
-        public final ForgeConfigSpec.BooleanValue ignoreLeaves;
-        public final ForgeConfigSpec.BooleanValue enableKnockback;
-        public final ForgeConfigSpec.DoubleValue knockbackStrength;
-        public final ForgeConfigSpec.BooleanValue improvedHitboxes;
-        public final ForgeConfigSpec.DoubleValue enemyBulletDamage;
-        public final ForgeConfigSpec.DoubleValue ammoBoxCapacityMultiplier;
-        public final ForgeConfigSpec.IntValue energyProductionRate;
-        public final ForgeConfigSpec.BooleanValue drawAnimation;
-        public final ForgeConfigSpec.BooleanValue forceEnergyGuns;
-        public final ForgeConfigSpec.BooleanValue toggleADS;
+        public final NeoForgeConfigSpec.BooleanValue enableGunDamage;
+        public final NeoForgeConfigSpec.BooleanValue enableAttachmentDamage;
+        public  final NeoForgeConfigSpec.BooleanValue spawnCasings;
+        public final NeoForgeConfigSpec.DoubleValue growBoundingBoxAmount;
+        public final NeoForgeConfigSpec.BooleanValue enableHeadShots;
+        public final NeoForgeConfigSpec.DoubleValue headShotDamageMultiplier;
+        public final NeoForgeConfigSpec.DoubleValue criticalDamageMultiplier;
+        public final NeoForgeConfigSpec.BooleanValue ignoreLeaves;
+        public final NeoForgeConfigSpec.BooleanValue enableKnockback;
+        public final NeoForgeConfigSpec.DoubleValue knockbackStrength;
+        public final NeoForgeConfigSpec.BooleanValue improvedHitboxes;
+        public final NeoForgeConfigSpec.DoubleValue enemyBulletDamage;
+        public final NeoForgeConfigSpec.DoubleValue ammoBoxCapacityMultiplier;
+        public final NeoForgeConfigSpec.IntValue energyProductionRate;
+        public final NeoForgeConfigSpec.BooleanValue drawAnimation;
+        public final NeoForgeConfigSpec.BooleanValue forceEnergyGuns;
+        public final NeoForgeConfigSpec.BooleanValue toggleADS;
 
 
-        public Gameplay(ForgeConfigSpec.Builder builder)
+        public Gameplay(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to gameplay").push("gameplay");
             {
@@ -294,15 +294,15 @@ public class Config
      */
     public static class Griefing
     {
-        public final ForgeConfigSpec.BooleanValue enableBlockRemovalOnExplosions;
-        public final ForgeConfigSpec.BooleanValue enableGlassBreaking;
-        public final ForgeConfigSpec.BooleanValue fragileBlockDrops;
-        public final ForgeConfigSpec.DoubleValue fragileBaseBreakChance;
-        public final ForgeConfigSpec.BooleanValue setFireToBlocks;
-        public final ForgeConfigSpec.BooleanValue enableBlockBreaking;
-        public final ForgeConfigSpec.BooleanValue enableBeamMining;
+        public final NeoForgeConfigSpec.BooleanValue enableBlockRemovalOnExplosions;
+        public final NeoForgeConfigSpec.BooleanValue enableGlassBreaking;
+        public final NeoForgeConfigSpec.BooleanValue fragileBlockDrops;
+        public final NeoForgeConfigSpec.DoubleValue fragileBaseBreakChance;
+        public final NeoForgeConfigSpec.BooleanValue setFireToBlocks;
+        public final NeoForgeConfigSpec.BooleanValue enableBlockBreaking;
+        public final NeoForgeConfigSpec.BooleanValue enableBeamMining;
 
-        public Griefing(ForgeConfigSpec.Builder builder)
+        public Griefing(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties related to gun griefing").push("griefing");
             {
@@ -323,9 +323,9 @@ public class Config
      */
     public static class Network
     {
-        public final ForgeConfigSpec.DoubleValue projectileTrackingRange;
+        public final NeoForgeConfigSpec.DoubleValue projectileTrackingRange;
 
-        public Network(ForgeConfigSpec.Builder builder)
+        public Network(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to network").push("network");
             {
@@ -340,12 +340,12 @@ public class Config
      */
     public static class AggroMobs
     {
-        public final ForgeConfigSpec.BooleanValue enabled;
-        public final ForgeConfigSpec.BooleanValue angerHostileMobs;
-        public final ForgeConfigSpec.DoubleValue unsilencedRange;
-        public final ForgeConfigSpec.ConfigValue<List<? extends String>> exemptEntities;
+        public final NeoForgeConfigSpec.BooleanValue enabled;
+        public final NeoForgeConfigSpec.BooleanValue angerHostileMobs;
+        public final NeoForgeConfigSpec.DoubleValue unsilencedRange;
+        public final NeoForgeConfigSpec.ConfigValue<List<? extends String>> exemptEntities;
 
-        public AggroMobs(ForgeConfigSpec.Builder builder)
+        public AggroMobs(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to mob aggression").push("aggro_mobs");
             {
@@ -359,12 +359,12 @@ public class Config
     }
     public static class FleeingMobs
     {
-        public final ForgeConfigSpec.BooleanValue enabled;
-        public final ForgeConfigSpec.DoubleValue silencedRange;
-        public final ForgeConfigSpec.DoubleValue unsilencedRange;
-        public final ForgeConfigSpec.ConfigValue<List<? extends String>> fleeingEntities;
+        public final NeoForgeConfigSpec.BooleanValue enabled;
+        public final NeoForgeConfigSpec.DoubleValue silencedRange;
+        public final NeoForgeConfigSpec.DoubleValue unsilencedRange;
+        public final NeoForgeConfigSpec.ConfigValue<List<? extends String>> fleeingEntities;
 
-        public FleeingMobs(ForgeConfigSpec.Builder builder)
+        public FleeingMobs(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to mob fleeing").push("fleeing_mobs");
             {
@@ -383,9 +383,9 @@ public class Config
      */
     public static class Rockets
     {
-        public final ForgeConfigSpec.DoubleValue explosionRadius;
+        public final NeoForgeConfigSpec.DoubleValue explosionRadius;
 
-        public Rockets(ForgeConfigSpec.Builder builder)
+        public Rockets(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to rockets").push("rockets");
             {
@@ -400,9 +400,9 @@ public class Config
      */
     public static class Grenades
     {
-        public final ForgeConfigSpec.DoubleValue explosionRadius;
+        public final NeoForgeConfigSpec.DoubleValue explosionRadius;
 
-        public Grenades(ForgeConfigSpec.Builder builder)
+        public Grenades(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to grenades").push("grenades");
             {
@@ -416,7 +416,7 @@ public class Config
      */
     public static class Gunsmith
     {
-        public Gunsmith(ForgeConfigSpec.Builder builder) {
+        public Gunsmith(NeoForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to gunsmith").push("gunsmith");
             {
 
@@ -426,12 +426,12 @@ public class Config
     }
     public static class Turret
     {
-        public final Map<TurretProjectileEntity.BulletType, ForgeConfigSpec.DoubleValue> bulletDamage;
-        public final ForgeConfigSpec.BooleanValue enableDamageScaling;
-        public final ForgeConfigSpec.DoubleValue damageScalingRate;
-        public final ForgeConfigSpec.DoubleValue maxScaledDamage;
+        public final Map<TurretProjectileEntity.BulletType, NeoForgeConfigSpec.DoubleValue> bulletDamage;
+        public final NeoForgeConfigSpec.BooleanValue enableDamageScaling;
+        public final NeoForgeConfigSpec.DoubleValue damageScalingRate;
+        public final NeoForgeConfigSpec.DoubleValue maxScaledDamage;
 
-        public Turret(ForgeConfigSpec.Builder builder)
+        public Turret(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to turrets").push("turret");
             {
@@ -478,7 +478,7 @@ public class Config
         public final Blind blind;
         public final Deafen deafen;
 
-        public StunGrenades(ForgeConfigSpec.Builder builder)
+        public StunGrenades(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to stun grenades").push("stun_grenades");
             {
@@ -495,9 +495,9 @@ public class Config
     public static class Blind
     {
         public final EffectCriteria criteria;
-        public final ForgeConfigSpec.BooleanValue blindMobs;
+        public final NeoForgeConfigSpec.BooleanValue blindMobs;
 
-        public Blind(ForgeConfigSpec.Builder builder)
+        public Blind(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Blinding properties of stun grenades").push("blind");
             {
@@ -514,9 +514,9 @@ public class Config
     public static class Deafen
     {
         public final EffectCriteria criteria;
-        public final ForgeConfigSpec.BooleanValue panicMobs;
+        public final NeoForgeConfigSpec.BooleanValue panicMobs;
 
-        public Deafen(ForgeConfigSpec.Builder builder)
+        public Deafen(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Deafening properties of stun grenades").push("deafen");
             {
@@ -532,14 +532,14 @@ public class Config
      */
     public static class EffectCriteria
     {
-        public final ForgeConfigSpec.DoubleValue radius;
-        public final ForgeConfigSpec.IntValue durationMax;
-        public final ForgeConfigSpec.IntValue durationMin;
-        public final ForgeConfigSpec.DoubleValue angleEffect;
-        public final ForgeConfigSpec.DoubleValue angleAttenuationMax;
-        public final ForgeConfigSpec.BooleanValue raytraceOpaqueBlocks;
+        public final NeoForgeConfigSpec.DoubleValue radius;
+        public final NeoForgeConfigSpec.IntValue durationMax;
+        public final NeoForgeConfigSpec.IntValue durationMin;
+        public final NeoForgeConfigSpec.DoubleValue angleEffect;
+        public final NeoForgeConfigSpec.DoubleValue angleAttenuationMax;
+        public final NeoForgeConfigSpec.BooleanValue raytraceOpaqueBlocks;
 
-        public EffectCriteria(ForgeConfigSpec.Builder builder, double radius, int durationMax, int durationMin, double angleEffect, double angleAttenuationMax, boolean raytraceOpaqueBlocks)
+        public EffectCriteria(NeoForgeConfigSpec.Builder builder, double radius, int durationMax, int durationMin, double angleEffect, double angleAttenuationMax, boolean raytraceOpaqueBlocks)
         {
             builder.push("effect_criteria");
             {
@@ -559,10 +559,10 @@ public class Config
      */
     public static class ProjectileSpread
     {
-        public final ForgeConfigSpec.IntValue spreadThreshold;
-        public final ForgeConfigSpec.IntValue maxCount;
+        public final NeoForgeConfigSpec.IntValue spreadThreshold;
+        public final NeoForgeConfigSpec.IntValue maxCount;
 
-        public ProjectileSpread(ForgeConfigSpec.Builder builder)
+        public ProjectileSpread(NeoForgeConfigSpec.Builder builder)
         {
             builder.comment("Properties relating to projectile spread").push("projectile_spread");
             {
@@ -573,14 +573,14 @@ public class Config
         }
     }
     public static class GunScalingConfig {
-        private static final ForgeConfigSpec SPEC;
-        public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+        private static final NeoForgeConfigSpec SPEC;
+        public static final NeoForgeConfigSpec.Builder BUILDER = new NeoForgeConfigSpec.Builder();
         private static final GunScalingConfig INSTANCE = new GunScalingConfig();
 
-        private static final ForgeConfigSpec.BooleanValue enableScalingDamage;
-        private static final ForgeConfigSpec.DoubleValue damageIncreaseRate;
-        private static final ForgeConfigSpec.DoubleValue baseDamage;
-        private static final ForgeConfigSpec.DoubleValue maxDamage;
+        private static final NeoForgeConfigSpec.BooleanValue enableScalingDamage;
+        private static final NeoForgeConfigSpec.DoubleValue damageIncreaseRate;
+        private static final NeoForgeConfigSpec.DoubleValue baseDamage;
+        private static final NeoForgeConfigSpec.DoubleValue maxDamage;
 
         static {
             BUILDER.push("Scaling Damage");
@@ -668,18 +668,18 @@ public class Config
      */
     public static class Server
     {
-        public final ForgeConfigSpec.IntValue alphaOverlay;
-        public final ForgeConfigSpec.IntValue alphaFadeThreshold;
-        public final ForgeConfigSpec.DoubleValue soundPercentage;
-        public final ForgeConfigSpec.IntValue soundFadeThreshold;
-        public final ForgeConfigSpec.DoubleValue ringVolume;
-        public final ForgeConfigSpec.DoubleValue gunShotMaxDistance;
-        public final ForgeConfigSpec.DoubleValue reloadMaxDistance;
-        public final ForgeConfigSpec.BooleanValue enableCameraRecoil;
-        public final ForgeConfigSpec.IntValue cooldownThreshold;
+        public final NeoForgeConfigSpec.IntValue alphaOverlay;
+        public final NeoForgeConfigSpec.IntValue alphaFadeThreshold;
+        public final NeoForgeConfigSpec.DoubleValue soundPercentage;
+        public final NeoForgeConfigSpec.IntValue soundFadeThreshold;
+        public final NeoForgeConfigSpec.DoubleValue ringVolume;
+        public final NeoForgeConfigSpec.DoubleValue gunShotMaxDistance;
+        public final NeoForgeConfigSpec.DoubleValue reloadMaxDistance;
+        public final NeoForgeConfigSpec.BooleanValue enableCameraRecoil;
+        public final NeoForgeConfigSpec.IntValue cooldownThreshold;
         public final Experimental experimental;
 
-        public Server(ForgeConfigSpec.Builder builder)
+        public Server(NeoForgeConfigSpec.Builder builder)
         {
             builder.push("server");
             {
@@ -710,9 +710,9 @@ public class Config
 
         public static class Experimental
         {
-            public final ForgeConfigSpec.BooleanValue forceDyeableAttachments;
+            public final NeoForgeConfigSpec.BooleanValue forceDyeableAttachments;
 
-            public Experimental(ForgeConfigSpec.Builder builder)
+            public Experimental(NeoForgeConfigSpec.Builder builder)
             {
                 builder.push("experimental");
                 this.forceDyeableAttachments = builder.comment("Forces all attachments to be dyeable regardless if they have an affect on the model. This is useful if your server uses custom models for attachments and the models have dyeable elements").define("forceDyeableAttachments", false);
@@ -721,26 +721,26 @@ public class Config
         }
     }
 
-    static final ForgeConfigSpec clientSpec;
+    static final NeoForgeConfigSpec clientSpec;
     public static final Config.Client CLIENT;
 
-    static final ForgeConfigSpec commonSpec;
+    static final NeoForgeConfigSpec commonSpec;
     public static final Config.Common COMMON;
 
-    static final ForgeConfigSpec serverSpec;
+    static final NeoForgeConfigSpec serverSpec;
     public static final Config.Server SERVER;
 
     static
     {
-        final Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Config.Client::new);
+        final Pair<Client, NeoForgeConfigSpec> clientSpecPair = new NeoForgeConfigSpec.Builder().configure(Config.Client::new);
         clientSpec = clientSpecPair.getRight();
         CLIENT = clientSpecPair.getLeft();
 
-        final Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
+        final Pair<Common, NeoForgeConfigSpec> commonSpecPair = new NeoForgeConfigSpec.Builder().configure(Common::new);
         commonSpec = commonSpecPair.getRight();
         COMMON = commonSpecPair.getLeft();
 
-        final Pair<Server, ForgeConfigSpec> serverSpecPair = new ForgeConfigSpec.Builder().configure(Server::new);
+        final Pair<Server, NeoForgeConfigSpec> serverSpecPair = new NeoForgeConfigSpec.Builder().configure(Server::new);
         serverSpec = serverSpecPair.getRight();
         SERVER = serverSpecPair.getLeft();
     }

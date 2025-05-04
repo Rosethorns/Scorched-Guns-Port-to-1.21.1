@@ -26,9 +26,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
-import top.ribs.scguns.blockentity.ShotgunTurretBlockEntity;
 import top.ribs.scguns.blockentity.ShotgunTurretBlockEntity;
 import top.ribs.scguns.init.ModBlockEntities;
 

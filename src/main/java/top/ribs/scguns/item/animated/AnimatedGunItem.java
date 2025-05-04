@@ -8,17 +8,15 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.cache.AnimatableIdCache;
@@ -33,7 +31,6 @@ import software.bernie.geckolib.core.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.ClientUtils;
 import top.ribs.scguns.Config;
-import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.animations.GunAnimations;
 import top.ribs.scguns.attributes.SCAttributes;
 import top.ribs.scguns.client.handler.MeleeAttackHandler;
@@ -42,7 +39,6 @@ import top.ribs.scguns.client.util.GunRotationHandler;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.common.ReloadType;
 import top.ribs.scguns.event.GunEventBus;
-import top.ribs.scguns.init.ModEnchantments;
 import top.ribs.scguns.init.ModSounds;
 import top.ribs.scguns.init.ModSyncedDataKeys;
 import top.ribs.scguns.item.GunItem;
@@ -577,7 +573,7 @@ public class AnimatedGunItem extends GunItem implements GeoAnimatable, GeoItem {
                         Level level = player.level();
                         GunEventBus.ejectCasing(level, player, false);
                         if (gun.getProjectile().casingType != null && !player.getAbilities().instabuild) {
-                            new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
+                            new ItemStack(Objects.requireNonNull(NeoForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
 
                             PacketHandler.getPlayChannel().sendToServer(new C2SMessageEjectCasing());
                         }

@@ -6,7 +6,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.event.GunEventBus;
 import top.ribs.scguns.init.ModEnchantments;
@@ -36,7 +36,7 @@ public class C2SMessageEjectCasing extends PlayMessage<C2SMessageEjectCasing> {
 
                     Gun gun = ((GunItem)heldItem.getItem()).getModifiedGun(heldItem);
                     if (gun.getProjectile().casingType != null && !player.getAbilities().instabuild) {
-                        ItemStack casingStack = new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
+                        ItemStack casingStack = new ItemStack(Objects.requireNonNull(NeoForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
 
                         double baseChance = 0.4;
                         int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHELL_CATCHER.get(), heldItem);

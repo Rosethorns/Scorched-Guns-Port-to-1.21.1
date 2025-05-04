@@ -1,14 +1,12 @@
 package top.ribs.scguns.init;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.entity.block.PrimedNitroKeg;
 import top.ribs.scguns.entity.block.PrimedPowderKeg;
@@ -25,7 +23,7 @@ import java.util.function.BiFunction;
  */
 public class ModEntities
 {
-    public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Reference.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(NeoForgeRegistries.ENTITY_TYPES, Reference.MOD_ID);
     public static final RegistryObject<EntityType<PrimedPowderKeg>> PRIMED_POWDER_KEG = REGISTER.register("primed_powder_keg",
             () -> EntityType.Builder.<PrimedPowderKeg>of(PrimedPowderKeg::new, MobCategory.MISC)
                     .sized(0.98F, 0.98F)

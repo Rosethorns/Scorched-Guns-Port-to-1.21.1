@@ -8,17 +8,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.client.SpecialModels;
 import top.ribs.scguns.client.render.gun.IOverrideModel;
 import top.ribs.scguns.client.util.RenderUtil;
-import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.event.GunFireEvent;
-import top.ribs.scguns.init.ModItems;
-import top.ribs.scguns.item.attachment.IAttachment;
 
 /**
  * Since we want to have an animation for the charging handle, we will be overriding the standard model rendering.

@@ -8,15 +8,15 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
 import top.ribs.scguns.client.render.entity.BeamRenderer;
 
 import java.util.*;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import top.ribs.scguns.common.FireMode;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.init.ModParticleTypes;

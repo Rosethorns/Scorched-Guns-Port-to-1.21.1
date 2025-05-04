@@ -13,12 +13,12 @@ import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.OnDatapackSyncEvent;
-import net.minecraftforge.event.server.ServerStoppedEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.apache.commons.lang3.Validate;
 import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.Reference;
@@ -61,9 +61,9 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
     protected Map<GunItem, Gun> prepare(ResourceManager manager, ProfilerFiller profiler)
     {
         Map<GunItem, Gun> map = new HashMap<>();
-        ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof GunItem).forEach(item ->
+        NeoForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof GunItem).forEach(item ->
         {
-            ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
+            ResourceLocation id = NeoForgeRegistries.ITEMS.getKey(item);
             if(id != null)
             {
                 List<ResourceLocation> resources = new ArrayList<>(manager.listResources("guns", (fileName) -> fileName.getPath().endsWith(id.getPath() + ".json")).keySet());
@@ -124,7 +124,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
     {
         ImmutableMap.Builder<ResourceLocation, Gun> builder = ImmutableMap.builder();
         objects.forEach((item, gun) -> {
-            builder.put(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)), gun);
+            builder.put(Objects.requireNonNull(NeoForgeRegistries.ITEMS.getKey(item)), gun);
             item.setGun(new Supplier(gun));
         });
         this.registeredGuns = builder.build();
@@ -184,7 +184,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
         {
             for(Map.Entry<ResourceLocation, Gun> entry : registeredGuns.entrySet())
             {
-                Item item = ForgeRegistries.ITEMS.getValue(entry.getKey());
+                Item item = NeoForgeRegistries.ITEMS.getValue(entry.getKey());
                 if(!(item instanceof GunItem))
                 {
                     return false;

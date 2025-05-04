@@ -10,7 +10,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 /**
  * Author: MrCrayfish
@@ -85,7 +85,7 @@ public class BulletHoleData implements ParticleOptions
     @Override
     public String writeToString()
     {
-        return ForgeRegistries.PARTICLE_TYPES.getKey(this.getType()) + " " + this.direction.getName();
+        return NeoForgeRegistries.PARTICLE_TYPES.getKey(this.getType()) + " " + this.direction.getName();
     }
 
     public static Codec<BulletHoleData> codec(ParticleType<BulletHoleData> type)

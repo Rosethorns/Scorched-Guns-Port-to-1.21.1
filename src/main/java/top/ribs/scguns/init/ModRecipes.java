@@ -1,19 +1,17 @@
 package top.ribs.scguns.init;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.client.screen.*;
-
-import java.sql.Ref;
 
 
 public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
-            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Reference.MOD_ID);
+            DeferredRegister.create(NeoForgeRegistries.RECIPE_SERIALIZERS, Reference.MOD_ID);
 
     public static final RegistryObject<RecipeSerializer<MechanicalPressRecipe>> MECHANICAL_PRESS_SERIALIZER =
             SERIALIZERS.register("mechanical_pressing", () -> MechanicalPressRecipe.Serializer.INSTANCE);

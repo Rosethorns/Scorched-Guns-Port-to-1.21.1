@@ -3,10 +3,10 @@ package top.ribs.scguns.init;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ModPointOfInterestTypes
 {
-    public static final DeferredRegister<PoiType> REGISTER = DeferredRegister.create(ForgeRegistries.POI_TYPES, Reference.MOD_ID);
+    public static final DeferredRegister<PoiType> REGISTER = DeferredRegister.create(NeoForgeRegistries.POI_TYPES, Reference.MOD_ID);
 
 
     private static RegistryObject<PoiType> register(String name, RegistryObject<Block> block, int maxFreeTickets) {

@@ -1,10 +1,7 @@
 package top.ribs.scguns.item;
 
-import top.ribs.scguns.client.handler.GunRenderingHandler;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import top.ribs.scguns.init.ModItems;
 
 /**

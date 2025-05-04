@@ -11,8 +11,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -21,16 +19,14 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.blockentity.MobTrapBlockEntity;
 import top.ribs.scguns.init.ModBlockEntities;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MobTrapBlock extends BaseEntityBlock {
 
@@ -59,7 +55,7 @@ public class MobTrapBlock extends BaseEntityBlock {
                         mobCounts.put(mob, mobCounts.getOrDefault(mob, 0) + 1);
                     }
                     for (Map.Entry<EntityType<?>, Integer> entry : mobCounts.entrySet()) {
-                        player.sendSystemMessage(Component.literal("- " + ForgeRegistries.ENTITY_TYPES.getKey(entry.getKey()).toString() + " x" + entry.getValue()).withStyle(ChatFormatting.GREEN));
+                        player.sendSystemMessage(Component.literal("- " + NeoForgeRegistries.ENTITY_TYPES.getKey(entry.getKey()).toString() + " x" + entry.getValue()).withStyle(ChatFormatting.GREEN));
                     }
                 }
             } else if (heldItem.getItem() instanceof SpawnEggItem eggItem) {

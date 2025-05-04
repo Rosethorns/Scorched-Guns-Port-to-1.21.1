@@ -8,13 +8,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
 import top.ribs.scguns.interfaces.IEnergyGun;
-import top.ribs.scguns.item.GunItem;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
 import javax.annotation.Nullable;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class EnergyGunItem extends GunItem implements IEnergyGun {
 
             @Override
             public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-                return cap == ForgeCapabilities.ENERGY ? energy.cast() : LazyOptional.empty();
+                return cap == Capabilities.ENERGY ? energy.cast() : LazyOptional.empty();
             }
         };
     }
@@ -55,11 +54,11 @@ public class EnergyGunItem extends GunItem implements IEnergyGun {
     }
 
     public int getEnergyStored(ItemStack stack) {
-        return stack.getCapability(ForgeCapabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
+        return stack.getCapability(Capabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
     }
 
     public int getMaxEnergyStored(ItemStack stack) {
-        return stack.getCapability(ForgeCapabilities.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
+        return stack.getCapability(Capabilities.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
     }
 
     @Override

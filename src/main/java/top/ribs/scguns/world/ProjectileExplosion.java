@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.EventHooks;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -110,7 +111,7 @@ public class ProjectileExplosion extends Explosion
 
         List<Entity> entities = this.world.getEntities(this.exploder, new AABB(minX, minY, minZ, maxX, maxY, maxZ));
 
-        net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.world, this, entities, radius);
+        EventHooks.onExplosionDetonate(this.world, this, entities, radius);
 
         Vec3 explosionPos = new Vec3(this.x, this.y, this.z);
         for(Entity entity : entities)

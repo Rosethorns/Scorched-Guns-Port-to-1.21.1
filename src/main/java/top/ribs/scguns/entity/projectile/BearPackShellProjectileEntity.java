@@ -21,16 +21,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.init.ModDamageTypes;
 import top.ribs.scguns.init.ModEnchantments;
-import top.ribs.scguns.init.ModParticleTypes;
 import top.ribs.scguns.init.ModTags;
 import top.ribs.scguns.interfaces.IDamageable;
 import top.ribs.scguns.item.GunItem;
@@ -157,7 +155,7 @@ public class BearPackShellProjectileEntity extends ProjectileEntity {
                     if (effectLocation != null) {
                         float effectChance = this.getProjectile().getImpactEffectChance();
                         if (this.random.nextFloat() < effectChance) {
-                            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                            MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                             if (effect != null) {
                                 int duration = this.getProjectile().getImpactEffectDuration();
                                 if (remainingPenetrations < 2) {

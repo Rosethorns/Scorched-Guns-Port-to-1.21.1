@@ -1,6 +1,6 @@
 package top.ribs.scguns.init;
 
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 public class ModCompat {
     public static boolean isCreateLoaded() {

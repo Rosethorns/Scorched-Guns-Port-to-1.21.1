@@ -4,17 +4,17 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 
 public class ModVillagers {
     public static final DeferredRegister<PoiType> POI_TYPES =
-            DeferredRegister.create(ForgeRegistries.POI_TYPES, Reference.MOD_ID);
+            DeferredRegister.create(NeoForgeRegistries.POI_TYPES, Reference.MOD_ID);
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
-            DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, Reference.MOD_ID);
+            DeferredRegister.create(NeoForgeRegistries.VILLAGER_PROFESSIONS, Reference.MOD_ID);
 
     public static final RegistryObject<PoiType> GUNSMITH_POI = POI_TYPES.register("gunsmith_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocks.GUN_BENCH.get().getStateDefinition().getPossibleStates()),

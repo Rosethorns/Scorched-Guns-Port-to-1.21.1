@@ -5,12 +5,12 @@ import top.ribs.scguns.item.GunItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class ModelOverrides
         {
             /* Register model overrides as an event for ease. Doesn't create an extra overhead because
              * Forge will just ignore it if it contains no events */
-            MinecraftForge.EVENT_BUS.register(model);
+            NeoForge.EVENT_BUS.register(model);
         }
     }
 

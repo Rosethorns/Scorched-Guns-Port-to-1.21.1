@@ -30,16 +30,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.level.ChunkEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.server.ServerLifecycleHooks;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.level.ChunkEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -48,7 +48,6 @@ import top.ribs.scguns.Reference;
 import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.block.SulfurVentBlock;
 import top.ribs.scguns.client.handler.MeleeAttackHandler;
-import top.ribs.scguns.client.render.gun.model.RatKingAndQueenModel;
 import top.ribs.scguns.common.*;
 import top.ribs.scguns.init.*;
 import top.ribs.scguns.interfaces.IAirGun;
@@ -176,7 +175,7 @@ public class GunEventBus {
             int energyUse = gun.getGeneral().getEnergyUse();
             if (!player.isCreative()) {
                 if (heldItem.getItem() instanceof IEnergyGun) {
-                    IEnergyStorage energyStorage = heldItem.getCapability(ForgeCapabilities.ENERGY)
+                    IEnergyStorage energyStorage = heldItem.getCapability(Capabilities.ENERGY)
                             .orElseThrow(IllegalStateException::new);
                     if (energyStorage.getEnergyStored() >= energyUse) {
                         energyStorage.extractEnergy(energyUse, false);
@@ -321,7 +320,7 @@ public class GunEventBus {
                     }
                 }
                 if (gun.getProjectile().casingType != null && !player.getAbilities().instabuild && !gun.getProjectile().ejectDuringReload()) {
-                    ItemStack casingStack = new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
+                    ItemStack casingStack = new ItemStack(Objects.requireNonNull(NeoForgeRegistries.ITEMS.getValue(gun.getProjectile().casingType)));
                     double baseChance = 0.4;
                     int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHELL_CATCHER.get(), heldItem);
                     double finalChance = baseChance + (enchantmentLevel * 0.15);
@@ -567,7 +566,7 @@ public class GunEventBus {
         ResourceLocation particleLocation = gun.getProjectile().getCasingParticle();
 
         if (particleLocation != null) {
-            ParticleType<?> particleType = ForgeRegistries.PARTICLE_TYPES.getValue(particleLocation);
+            ParticleType<?> particleType = NeoForgeRegistries.PARTICLE_TYPES.getValue(particleLocation);
             if (particleType instanceof SimpleParticleType simpleParticleType) {
                 level.addParticle(simpleParticleType,
                         particlePos.x, particlePos.y, particlePos.z,

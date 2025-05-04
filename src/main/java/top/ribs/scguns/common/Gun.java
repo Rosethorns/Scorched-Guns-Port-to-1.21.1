@@ -16,11 +16,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.fml.DistExecutor;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.Reference;
@@ -851,7 +851,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          */
         @Nullable
         public Item getReloadByproduct() {
-            return this.reloadByproduct != null ? ForgeRegistries.ITEMS.getValue(this.reloadByproduct) : null;
+            return this.reloadByproduct != null ? NeoForgeRegistries.ITEMS.getValue(this.reloadByproduct) : null;
         }
 
         /**
@@ -872,7 +872,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          * @return The registry id of the reload item
          */
         public Item getReloadItem() {
-            return ForgeRegistries.ITEMS.getValue(this.reloadItem);
+            return NeoForgeRegistries.ITEMS.getValue(this.reloadItem);
         }
 
         public int getMaxAmmo() {
@@ -1106,7 +1106,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          * @return The registry id of the ammo item
          */
         public @org.jetbrains.annotations.Nullable Item getItem() {
-            return ForgeRegistries.ITEMS.getValue(this.item);
+            return NeoForgeRegistries.ITEMS.getValue(this.item);
         }
 
         public boolean firesArrows() {
@@ -1617,7 +1617,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             public SimpleParticleType getParticleType() {
                 try {
                     ResourceLocation particleLocation = new ResourceLocation(this.particleType);
-                    ParticleType<?> registryType = ForgeRegistries.PARTICLE_TYPES.getValue(particleLocation);
+                    ParticleType<?> registryType = NeoForgeRegistries.PARTICLE_TYPES.getValue(particleLocation);
                     if (registryType instanceof SimpleParticleType simpleType) {
                         return simpleType;
                     }
@@ -2608,7 +2608,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         }
 
         public Builder setCasingType(Item item) {
-            this.gun.projectile.casingType = ForgeRegistries.ITEMS.getKey(item);
+            this.gun.projectile.casingType = NeoForgeRegistries.ITEMS.getKey(item);
             return this;
         }
 
@@ -2633,7 +2633,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         }
 
         public Builder setReloadItem(Item item) {
-            this.gun.reloads.reloadItem = ForgeRegistries.ITEMS.getKey(item);
+            this.gun.reloads.reloadItem = NeoForgeRegistries.ITEMS.getKey(item);
             return this;
         }
 
@@ -2708,7 +2708,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         }
 
         public Builder setAmmo(Item item) {
-            this.gun.projectile.item = ForgeRegistries.ITEMS.getKey(item);
+            this.gun.projectile.item = NeoForgeRegistries.ITEMS.getKey(item);
             return this;
         }
 
@@ -2768,32 +2768,32 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         }
 
         public Builder setFireSound(SoundEvent sound) {
-            this.gun.sounds.fire = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.fire = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 
         public Builder setReloadSound(SoundEvent sound) {
-            this.gun.sounds.reload = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.reload = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 
         public Builder setCockSound(SoundEvent sound) {
-            this.gun.sounds.cock = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.cock = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 
         public Builder setSilencedFireSound(SoundEvent sound) {
-            this.gun.sounds.silencedFire = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.silencedFire = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 
         public Builder setEnchantedFireSound(SoundEvent sound) {
-            this.gun.sounds.enchantedFire = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.enchantedFire = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 
         public Builder setPreFireSound(SoundEvent sound) {
-            this.gun.sounds.preFire = ForgeRegistries.SOUND_EVENTS.getKey(sound);
+            this.gun.sounds.preFire = NeoForgeRegistries.SOUND_EVENTS.getKey(sound);
             return this;
         }
 

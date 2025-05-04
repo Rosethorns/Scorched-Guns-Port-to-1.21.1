@@ -17,7 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import top.ribs.scguns.entity.projectile.ProjectileEntity;
 import top.ribs.scguns.init.ModDamageTypes;
 
@@ -60,7 +60,7 @@ public abstract class CustomExplosion extends Explosion {
             int j2 = Mth.floor(this.z - (double)f2 - 1.0);
             int j1 = Mth.floor(this.z + (double)f2 + 1.0);
             List<Entity> list = this.level.getEntities(this.source, new AABB(k, i2, j2, l, i1, j1));
-            ForgeEventFactory.onExplosionDetonate(this.level, this, list, f2);
+            EventHooks.onExplosionDetonate(this.level, this, list, f2);
             Vec3 vec3 = new Vec3(this.x, this.y, this.z);
 
             for (Entity entity : list) {

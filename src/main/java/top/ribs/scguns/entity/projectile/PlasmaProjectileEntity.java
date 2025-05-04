@@ -2,7 +2,6 @@ package top.ribs.scguns.entity.projectile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.game.ClientboundExplodePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.effect.CustomExplosion;
@@ -117,7 +116,7 @@ public class PlasmaProjectileEntity extends ProjectileEntity {
             }
 
             if (this.random.nextFloat() < effectChance) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     int duration = this.getProjectile().getImpactEffectDuration();
                     if (headshot) {
@@ -139,7 +138,7 @@ public class PlasmaProjectileEntity extends ProjectileEntity {
         if (!this.level().isClientSide()) {
             ResourceLocation effectLocation = this.getProjectile().getImpactEffect();
             if (effectLocation != null) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     List<LivingEntity> nearbyEntities = this.level().getEntitiesOfClass(
                             LivingEntity.class,

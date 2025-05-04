@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.init.ModBlockEntities;
 
 import javax.annotation.Nullable;
@@ -99,7 +99,7 @@ public class MobTrapBlockEntity extends BlockEntity {
         ListTag mobList = tag.getList("StoredMobs", Tag.TAG_STRING);
         for (int i = 0; i < mobList.size(); i++) {
             String mobId = mobList.getString(i);
-            EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(mobId));
+            EntityType<?> entityType = NeoForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(mobId));
             if (entityType != null) {
                 storedMobs.add(entityType);
             }
@@ -111,7 +111,7 @@ public class MobTrapBlockEntity extends BlockEntity {
         super.saveAdditional(tag);
         ListTag mobList = new ListTag();
         for (EntityType<?> mob : storedMobs) {
-            mobList.add(StringTag.valueOf(ForgeRegistries.ENTITY_TYPES.getKey(mob).toString()));
+            mobList.add(StringTag.valueOf(NeoForgeRegistries.ENTITY_TYPES.getKey(mob).toString()));
         }
         tag.put("StoredMobs", mobList);
     }

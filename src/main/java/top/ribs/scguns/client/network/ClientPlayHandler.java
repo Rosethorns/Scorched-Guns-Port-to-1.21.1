@@ -5,8 +5,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -17,16 +15,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.Config;
-import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.client.BulletTrail;
 import top.ribs.scguns.client.CustomGunManager;
 import top.ribs.scguns.client.audio.GunShotSound;
@@ -276,7 +272,7 @@ public class ClientPlayHandler {
         {
             if(Config.CLIENT.sounds.playSoundWhenCritical.get())
             {
-                SoundEvent event = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Config.CLIENT.sounds.criticalSound.get()));
+                SoundEvent event = NeoForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Config.CLIENT.sounds.criticalSound.get()));
                 return event != null ? event : SoundEvents.PLAYER_ATTACK_CRIT;
             }
         }
@@ -284,7 +280,7 @@ public class ClientPlayHandler {
         {
             if(Config.CLIENT.sounds.playSoundWhenHeadshot.get())
             {
-                SoundEvent event = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Config.CLIENT.sounds.headshotSound.get()));
+                SoundEvent event = NeoForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Config.CLIENT.sounds.headshotSound.get()));
                 return event != null ? event : SoundEvents.PLAYER_ATTACK_KNOCKBACK;
             }
         }

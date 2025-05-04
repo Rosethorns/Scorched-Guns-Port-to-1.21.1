@@ -3,9 +3,9 @@ package top.ribs.scguns.init;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.particles.BulletHoleData;
 import top.ribs.scguns.particles.TrailData;
@@ -14,7 +14,7 @@ import top.ribs.scguns.particles.TrailData;
  * Author: MrCrayfish
  */
 public class ModParticleTypes {
-    public static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Reference.MOD_ID);
+    public static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(NeoForgeRegistries.PARTICLE_TYPES, Reference.MOD_ID);
 
     public static final RegistryObject<ParticleType<BulletHoleData>> BULLET_HOLE = REGISTER.register("bullet_hole", () -> new ParticleType<>(false, BulletHoleData.DESERIALIZER) {
         @Override

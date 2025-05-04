@@ -23,14 +23,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.ribs.scguns.block.PoweredMechanicalPressBlock;
@@ -169,7 +169,7 @@ public class PoweredMechanicalPressBlockEntity extends BlockEntity implements Me
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             if (side == null) {
                 return lazyItemHandler.cast();
             } else if (side == Direction.DOWN) {
@@ -180,7 +180,7 @@ public class PoweredMechanicalPressBlockEntity extends BlockEntity implements Me
                 return LazyOptional.of(() -> new InputItemHandler(itemHandler)).cast();
             }
         }
-        if (cap == ForgeCapabilities.ENERGY) {
+        if (cap == Capabilities.ENERGY) {
             return energy.cast();
         }
         return super.getCapability(cap, side);

@@ -12,12 +12,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.item.GunItem;
 
@@ -40,7 +39,7 @@ public class SyringeProjectileEntity extends ProjectileEntity {
         if (!this.level().isClientSide) {
             ResourceLocation effectLocation = this.getProjectile().getImpactEffect();
             if (effectLocation != null) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     new MobEffectInstance(
                             effect,
@@ -73,7 +72,7 @@ public class SyringeProjectileEntity extends ProjectileEntity {
         if (!this.level().isClientSide) {
             ResourceLocation effectLocation = this.getProjectile().getImpactEffect();
             if (effectLocation != null) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     int potionColor = effect.getColor();
                     this.level().levelEvent(2002, this.blockPosition(), potionColor);

@@ -3,7 +3,6 @@ package top.ribs.scguns.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -11,10 +10,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -35,15 +32,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.network.NetworkHooks;
 import top.ribs.scguns.blockentity.VentCollectorBlockEntity;
-import top.ribs.scguns.init.ModBlockEntities;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class VentCollectorBlock extends Block implements EntityBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -87,7 +80,7 @@ public class VentCollectorBlock extends Block implements EntityBlock {
 
     private boolean hasInventory(LevelAccessor level, BlockPos pos, Direction direction) {
         BlockEntity be = level.getBlockEntity(pos);
-        return be != null && be.getCapability(ForgeCapabilities.ITEM_HANDLER, direction).isPresent();
+        return be != null && be.getCapability(Capabilities.ITEM_HANDLER, direction).isPresent();
     }
 
     @Override

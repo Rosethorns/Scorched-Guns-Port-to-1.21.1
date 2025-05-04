@@ -6,16 +6,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import top.ribs.scguns.block.BasicTurretBlock;
-import top.ribs.scguns.block.MaceratorBlock;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import top.ribs.scguns.blockentity.BasicTurretBlockEntity;
-import top.ribs.scguns.blockentity.MaceratorBlockEntity;
 import top.ribs.scguns.client.SpecialModels;
 import top.ribs.scguns.client.util.RenderUtil;
 

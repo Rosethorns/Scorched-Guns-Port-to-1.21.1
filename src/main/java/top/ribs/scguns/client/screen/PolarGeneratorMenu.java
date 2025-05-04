@@ -6,9 +6,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import top.ribs.scguns.blockentity.PolarGeneratorBlockEntity;
 import top.ribs.scguns.init.ModBlocks;
 import net.minecraft.world.entity.player.Inventory;
@@ -41,7 +41,7 @@ public class PolarGeneratorMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 80, 45));
         });
 
@@ -121,7 +121,7 @@ public class PolarGeneratorMenu extends AbstractContainerMenu {
     }
 
     private boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

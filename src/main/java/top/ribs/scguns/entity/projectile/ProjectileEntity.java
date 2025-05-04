@@ -39,10 +39,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.entity.IEntityAdditionalSpawnData;
+import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.event.EventHooks;
 import org.valkyrienskies.mod.common.world.RaycastUtilsKt;
 import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.attributes.SCAttributes;
@@ -324,7 +325,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
 //            System.out.println(this.soundTime);
 //            System.out.println(soundTime < this.tickCount - 3);
             if (!players.isEmpty() && flybySound != null && modifiedGun.getGeneral().getProjectileAmount() == 1 && this.tickCount > 3 && soundTime < this.tickCount - 3) {
-                this.level().playSound(null, startVec.x,startVec.y,startVec.z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(flybySound)), SoundSource.NEUTRAL, (float) 0.5F + this.level().getRandom().nextFloat() * 0.4F, 0.8F + this.level().getRandom().nextFloat() * 0.4F);
+                this.level().playSound(null, startVec.x,startVec.y,startVec.z, Objects.requireNonNull(NeoForgeRegistries.SOUND_EVENTS.getValue(flybySound)), SoundSource.NEUTRAL, (float) 0.5F + this.level().getRandom().nextFloat() * 0.4F, 0.8F + this.level().getRandom().nextFloat() * 0.4F);
                 this.soundTime = this.tickCount;
             }
 
@@ -501,7 +502,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
     }
 
     private void onHit(HitResult result, Vec3 startVec, Vec3 endVec) {
-        if (MinecraftForge.EVENT_BUS.post(new GunProjectileHitEvent(result, this))) {
+        if (NeoForge.EVENT_BUS.post(new GunProjectileHitEvent(result, this))) {
             return;
         }
 
@@ -723,7 +724,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
                     if (effectLocation != null) {
                         float effectChance = this.projectile.getImpactEffectChance();
                         if (this.random.nextFloat() < effectChance) {
-                            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                            MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                             if (effect != null) {
                                 livingEntity.addEffect(new MobEffectInstance(
                                         effect,
@@ -1012,7 +1013,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         Explosion.BlockInteraction mode = Config.COMMON.gameplay.griefing.enableBlockRemovalOnExplosions.get() && !forceNone ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
         Explosion explosion = new ProjectileExplosion(world, entity, source, null, entity.getX(), entity.getY(), entity.getZ(), radius, false, mode);
 
-        if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion))
+        if (EventHooks.onExplosionStart(world, explosion))
             return;
 
         explosion.explode();
@@ -1046,7 +1047,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         Explosion.BlockInteraction mode = Config.COMMON.gameplay.griefing.enableBlockRemovalOnExplosions.get() && !forceNone ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
         Explosion explosion = new ProjectileExplosion(world, entity, source, null, entity.getX(), entity.getY(), entity.getZ(), radius, false, mode);
 
-        if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion))
+        if (EventHooks.onExplosionStart(world, explosion))
             return;
         explosion.explode();
         explosion.finalizeExplosion(true);
@@ -1077,7 +1078,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         Explosion.BlockInteraction mode = Explosion.BlockInteraction.KEEP;
         Explosion explosion = new ProjectileExplosion(world, entity, source, null, entity.getX(), entity.getY(), entity.getZ(), radius, true, mode);
 
-        if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion))
+        if (EventHooks.onExplosionStart(world, explosion))
             return;
 
         // Do explosion logic

@@ -5,7 +5,7 @@ import com.mrcrayfish.framework.api.network.message.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.client.network.ClientPlayHandler;
 
 import java.util.Objects;
@@ -36,7 +36,7 @@ public class S2CMessageBlood extends PlayMessage<S2CMessageBlood>
         buffer.writeDouble(message.x);
         buffer.writeDouble(message.y);
         buffer.writeDouble(message.z);
-        buffer.writeResourceLocation(Objects.requireNonNull(ForgeRegistries.ENTITY_TYPES.getKey(message.entityType)));
+        buffer.writeResourceLocation(Objects.requireNonNull(NeoForgeRegistries.ENTITY_TYPES.getKey(message.entityType)));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class S2CMessageBlood extends PlayMessage<S2CMessageBlood>
         double y = buffer.readDouble();
         double z = buffer.readDouble();
         ResourceLocation entityTypeLocation = buffer.readResourceLocation();
-        EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(entityTypeLocation);
+        EntityType<?> entityType = NeoForgeRegistries.ENTITY_TYPES.getValue(entityTypeLocation);
         return new S2CMessageBlood(x, y, z, entityType);
     }
 

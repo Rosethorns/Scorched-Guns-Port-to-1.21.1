@@ -1,7 +1,6 @@
 package top.ribs.scguns.client.screen;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -10,10 +9,9 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import top.ribs.scguns.blockentity.MaceratorBlockEntity;
 import top.ribs.scguns.init.ModBlocks;
 
@@ -44,7 +42,7 @@ public class MaceratorMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
             for (int i = 0; i < 4; i++) {
                 int row = i / 2;
                 int col = i % 2;
@@ -155,7 +153,7 @@ public class MaceratorMenu extends AbstractContainerMenu {
     }
 
     private boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return CommonHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

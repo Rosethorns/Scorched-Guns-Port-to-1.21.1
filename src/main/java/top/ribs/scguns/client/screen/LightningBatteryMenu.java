@@ -7,13 +7,11 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import top.ribs.scguns.blockentity.LightningBatteryBlockEntity;
 import top.ribs.scguns.init.ModBlocks;
-import java.util.Objects;
+
 public class LightningBatteryMenu extends AbstractContainerMenu {
     private final LightningBatteryBlockEntity blockEntity;
     private final Level level;
@@ -41,7 +39,7 @@ public class LightningBatteryMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 56, 35)); // Input slot
             this.addSlot(new SlotItemHandler(handler, 1, 116, 35) {
                 @Override

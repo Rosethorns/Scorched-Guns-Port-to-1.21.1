@@ -1,14 +1,12 @@
 package top.ribs.scguns.init;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.world.GeothermalVentFeature;
 import top.ribs.scguns.world.SulfurVentFeature;
@@ -16,7 +14,7 @@ import top.ribs.scguns.world.SulfurVentFeature;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModFeatures {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Reference.MOD_ID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(NeoForgeRegistries.FEATURES, Reference.MOD_ID);
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEOTHERMAL_VENT_FEATURE = FEATURES.register("geothermal_vent",
             () -> new GeothermalVentFeature(NoneFeatureConfiguration.CODEC));

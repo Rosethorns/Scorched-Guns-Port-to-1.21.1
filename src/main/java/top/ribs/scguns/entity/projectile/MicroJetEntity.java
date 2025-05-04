@@ -1,12 +1,8 @@
 package top.ribs.scguns.entity.projectile;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundExplodePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +18,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.event.EventHooks;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.effect.CustomExplosion;
@@ -108,7 +105,7 @@ public class MicroJetEntity extends ProjectileEntity {
                 effectChance = Math.min(1.0f, effectChance * 1.25f);
             }
             if (this.random.nextFloat() < effectChance) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     int duration = this.getProjectile().getImpactEffectDuration();
                     if (headshot) {
@@ -130,7 +127,7 @@ public class MicroJetEntity extends ProjectileEntity {
         if (!this.level().isClientSide()) {
             ResourceLocation effectLocation = this.getProjectile().getImpactEffect();
             if (effectLocation != null) {
-                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                 if (effect != null) {
                     List<LivingEntity> nearbyEntities = this.level().getEntitiesOfClass(
                             LivingEntity.class,
@@ -177,7 +174,7 @@ public class MicroJetEntity extends ProjectileEntity {
             return;
         CustomExplosion explosion = new CustomExplosion(world, entity, entity.getX(), entity.getY(), entity.getZ(), radius, false, CustomExplosion.CustomBlockInteraction.NONE) {
         };
-        if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion))
+        if (EventHooks.onExplosionStart(world, explosion))
             return;
         explosion.explode();
         explosion.finalizeExplosion(true);

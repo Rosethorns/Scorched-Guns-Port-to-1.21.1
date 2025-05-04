@@ -19,21 +19,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.block.LightningBattery;
 import top.ribs.scguns.client.screen.LightningBatteryMenu;
 import top.ribs.scguns.client.screen.LightningBatteryRecipe;
 import top.ribs.scguns.interfaces.IEnergyGun;
-import top.ribs.scguns.item.EnergyGunItem;
 import top.ribs.scguns.init.ModBlockEntities;
 
 import javax.annotation.Nullable;
@@ -177,7 +176,7 @@ public class LightningBatteryBlockEntity extends BlockEntity implements MenuProv
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == Capabilities.ITEM_HANDLER) {
             if (side == null) {
                 return lazyItemHandler.cast();
             } else if (side == Direction.DOWN) {
@@ -186,7 +185,7 @@ public class LightningBatteryBlockEntity extends BlockEntity implements MenuProv
                 return LazyOptional.of(() -> new InputItemHandler(itemHandler)).cast();
             }
         }
-        if (cap == ForgeCapabilities.ENERGY) {
+        if (cap == Capabilities.ENERGY) {
             if (side == null) {
                 return internalEnergy.cast();
             } else {
@@ -265,7 +264,7 @@ public class LightningBatteryBlockEntity extends BlockEntity implements MenuProv
 
         if (!inputStack.isEmpty()) {
             if (inputStack.getItem() instanceof IEnergyGun) {
-                LazyOptional<IEnergyStorage> gunEnergyCap = inputStack.getCapability(ForgeCapabilities.ENERGY);
+                LazyOptional<IEnergyStorage> gunEnergyCap = inputStack.getCapability(Capabilities.ENERGY);
                 gunEnergyCap.ifPresent(gunEnergy -> {
                     int energyToTransfer = Math.min(energyStorage.extractEnergy(100, true), gunEnergy.receiveEnergy(100, true));
                     if (energyToTransfer > 0) {
@@ -326,7 +325,7 @@ public class LightningBatteryBlockEntity extends BlockEntity implements MenuProv
         for (Direction direction : Direction.values()) {
             BlockEntity adjacentEntity = level.getBlockEntity(worldPosition.relative(direction));
             if (adjacentEntity != null) {
-                adjacentEntity.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).ifPresent(handler -> {
+                adjacentEntity.getCapability(Capabilities.ENERGY, direction.getOpposite()).ifPresent(handler -> {
                     if (handler.canReceive()) {
                         int extracted = energyStorage.extractEnergy(50, true);
                         int accepted = handler.receiveEnergy(extracted, false);

@@ -7,17 +7,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.lwjgl.glfw.GLFW;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.AnimationController;
 import top.ribs.scguns.Config;
-import top.ribs.scguns.attributes.SCAttributes;
 import top.ribs.scguns.client.KeyBinds;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.common.ReloadType;
@@ -30,7 +29,6 @@ import top.ribs.scguns.network.message.C2SMessageGunLoaded;
 import top.ribs.scguns.network.message.C2SMessageLeftOverAmmo;
 import top.ribs.scguns.network.message.C2SMessageReload;
 import top.ribs.scguns.network.message.C2SMessageUnload;
-import top.ribs.scguns.util.GunEnchantmentHelper;
 import top.ribs.scguns.util.GunModifierHelper;
 
 import java.util.Objects;
@@ -194,11 +192,11 @@ public class ReloadHandler {
                     ResourceLocation preReloadSound = gun.getSounds().getPreReload();
                     if (preReloadSound != null) {
                         Config.SERVER.reloadMaxDistance.get();
-                        player.playSound(Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(preReloadSound)),
+                        player.playSound(Objects.requireNonNull(NeoForgeRegistries.SOUND_EVENTS.getValue(preReloadSound)),
                                 0.9F, 1.0F);
                     }
 
-                    if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack))) {
+                    if (NeoForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack))) {
                         return;
                     }
 
@@ -227,7 +225,7 @@ public class ReloadHandler {
                         }
                     }
 
-                    MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Post(player, stack));
+                    NeoForge.EVENT_BUS.post(new GunReloadEvent.Post(player, stack));
                 }
             }
         } else {

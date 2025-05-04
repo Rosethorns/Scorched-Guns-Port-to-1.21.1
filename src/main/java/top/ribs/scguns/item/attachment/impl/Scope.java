@@ -1,8 +1,8 @@
 package top.ribs.scguns.item.attachment.impl;
 
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.DistExecutor;
 import org.apache.commons.lang3.tuple.Pair;
 import top.ribs.scguns.debug.IDebugWidget;
 import top.ribs.scguns.debug.IEditorMenu;

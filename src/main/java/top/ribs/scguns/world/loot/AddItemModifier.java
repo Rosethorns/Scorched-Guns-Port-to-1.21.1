@@ -8,9 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.common.loot.LootModifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.common.loot.LootModifier;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
@@ -23,7 +23,7 @@ public class AddItemModifier extends LootModifier
 	public static final Supplier<Codec<AddItemModifier>> CODEC = Suppliers.memoize(() ->
 			RecordCodecBuilder.create(inst -> codecStart(inst).and(
 					inst.group(
-						ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter((m) -> m.addedItem),
+						NeoForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter((m) -> m.addedItem),
 						Codec.INT.optionalFieldOf("count", 1).forGetter((m) -> m.count)
 					)
 			)

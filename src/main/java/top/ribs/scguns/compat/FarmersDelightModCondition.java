@@ -2,9 +2,9 @@ package top.ribs.scguns.compat;
 
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.IConditionSerializer;
+import net.neoforged.fml.ModList;
 
 public class FarmersDelightModCondition implements ICondition {
     private static final ResourceLocation NAME = new ResourceLocation("scguns", "farmers_delight_mod_loaded");

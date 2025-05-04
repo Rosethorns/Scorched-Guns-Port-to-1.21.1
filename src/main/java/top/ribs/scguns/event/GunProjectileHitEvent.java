@@ -2,8 +2,8 @@ package top.ribs.scguns.event;
 
 import top.ribs.scguns.entity.projectile.ProjectileEntity;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.eventbus.api.Cancelable;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Cancelable;
+import net.neoforged.bus.api.Event;
 
 /**
  * <p>Fired when a projectile hits a block or entity.</p>

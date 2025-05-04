@@ -5,15 +5,15 @@ import com.mrcrayfish.controllable.client.Action;
 import com.mrcrayfish.controllable.client.gui.navigation.BasicNavigationPoint;
 import com.mrcrayfish.controllable.client.input.Controller;
 import com.mrcrayfish.controllable.event.ControllerEvents;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.client.GunButtonBindings;
 import top.ribs.scguns.common.FireMode;
@@ -24,7 +24,6 @@ import top.ribs.scguns.item.attachment.impl.Scope;
 import top.ribs.scguns.network.PacketHandler;
 import top.ribs.scguns.network.message.C2SMessageAttachments;
 import top.ribs.scguns.network.message.C2SMessageUnload;
-import top.ribs.scguns.util.GunEnchantmentHelper;
 import top.ribs.scguns.util.GunModifierHelper;
 
 /**
@@ -36,7 +35,7 @@ public class ControllerHandler
 
     // Crash fix proposed by Mikhail Tapio!
     public static void init() {
-        MinecraftForge.EVENT_BUS.register(new ControllerHandler());
+        NeoForge.EVENT_BUS.register(new ControllerHandler());
         ControllerEvents.INPUT.register((controller, newButton, originalButton, state) -> {
             Player player = Minecraft.getInstance().player;
             Level world = Minecraft.getInstance().level;

@@ -6,19 +6,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.block.AutoTurretBlock;
 import top.ribs.scguns.block.BasicTurretBlock;
 import top.ribs.scguns.block.EnemyTurretBlock;
@@ -32,12 +30,9 @@ import top.ribs.scguns.init.ModDamageTypes;
 import top.ribs.scguns.item.GunItem;
 import top.ribs.scguns.network.PacketHandler;
 import top.ribs.scguns.network.message.S2CMessageBlood;
-import top.ribs.scguns.network.message.S2CMessageProjectileHitEntity;
 import top.ribs.scguns.util.GunEnchantmentHelper;
 
 import java.util.List;
-
-import static top.ribs.scguns.blockentity.AutoTurretBlockEntity.MAX_DISABLE_TIME;
 
 public class LightningProjectileEntity extends ProjectileEntity {
     private static final int MAX_BOUNCES = 3;
@@ -81,7 +76,7 @@ public class LightningProjectileEntity extends ProjectileEntity {
                 effectChance *= bounceChanceMultiplier;
 
                 if (this.random.nextFloat() < effectChance) {
-                    MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                    MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                     if (effect != null) {
                         int duration = this.getProjectile().getImpactEffectDuration();
                         if (headshot) {

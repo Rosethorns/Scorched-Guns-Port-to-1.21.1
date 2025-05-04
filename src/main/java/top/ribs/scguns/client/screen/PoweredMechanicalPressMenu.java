@@ -6,12 +6,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import top.ribs.scguns.blockentity.PoweredMechanicalPressBlockEntity;
 import top.ribs.scguns.init.ModBlocks;
 import top.ribs.scguns.item.MoldItem;
@@ -43,7 +41,7 @@ public class PoweredMechanicalPressMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
             int yLevel = 27;
             this.addSlot(new SlotItemHandler(handler, 0, 26, yLevel)); // Input 1
             this.addSlot(new SlotItemHandler(handler, 1, 44, yLevel)); // Input 2

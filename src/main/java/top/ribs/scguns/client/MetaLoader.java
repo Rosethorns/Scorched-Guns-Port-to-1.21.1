@@ -8,7 +8,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenCustomHashMap;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 import top.ribs.scguns.item.IMeta;
 
@@ -41,7 +41,7 @@ public final class MetaLoader implements IDataLoader<MetaLoader.ItemResource>
     public List<ItemResource> getResourceSuppliers()
     {
         List<ItemResource> resources = new ArrayList<>();
-        ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IMeta).forEach(item ->
+        NeoForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IMeta).forEach(item ->
         {
             ResourceLocation key = item.builtInRegistryHolder().key().location();
             ResourceLocation location = new ResourceLocation(key.getNamespace(), "models/item/" + key.getPath() + ".scmeta");

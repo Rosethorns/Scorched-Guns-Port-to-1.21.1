@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.Config;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.init.ModTags;
@@ -92,7 +92,7 @@ public class BeowulfProjectileEntity extends ProjectileEntity {
                 if (effectLocation != null) {
                     float effectChance = this.getProjectile().getImpactEffectChance() * SHIELD_DAMAGE_PENETRATION;
                     if (this.random.nextFloat() < effectChance) {
-                        MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                        MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                         if (effect != null) {
                             int reducedDuration = (int)(this.getProjectile().getImpactEffectDuration() * SHIELD_DAMAGE_PENETRATION);
                             livingEntity.addEffect(new MobEffectInstance(
@@ -116,7 +116,7 @@ public class BeowulfProjectileEntity extends ProjectileEntity {
                         }
 
                         if (this.random.nextFloat() < effectChance) {
-                            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
+                            MobEffect effect = NeoForgeRegistries.MOB_EFFECTS.getValue(effectLocation);
                             if (effect != null) {
                                 int duration = this.getProjectile().getImpactEffectDuration();
                                 if (headshot) {

@@ -3,18 +3,18 @@ package top.ribs.scguns;
 import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.crafting.CraftingHelper;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.DistExecutor;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.ribs.scguns.attributes.SCAttributes;
@@ -78,7 +78,7 @@ public class ScorchedGuns {
         initializeModDependencies();
         ModItems.registerItems();
         // Register other mod features
-        MinecraftForge.EVENT_BUS.addListener(VillageStructures::addNewVillageBuilding);
+        NeoForge.EVENT_BUS.addListener(VillageStructures::addNewVillageBuilding);
         ModCreativeModeTabs.register(bus);
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
         ModBlocks.REGISTER.register(bus);
@@ -101,21 +101,21 @@ public class ScorchedGuns {
         // Ensure client-specific code is run only on the client side
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             ClientHandler.registerClientHandlers(bus);
-            MinecraftForge.EVENT_BUS.register(HUDRenderHandler.class);
-            MinecraftForge.EVENT_BUS.register(InspectHandler.get());
+            NeoForge.EVENT_BUS.register(HUDRenderHandler.class);
+            NeoForge.EVENT_BUS.register(InspectHandler.get());
             CraftingHelper.register(CreateModCondition.Serializer.INSTANCE);
             CraftingHelper.register(FarmersDelightModCondition.Serializer.INSTANCE);
             CraftingHelper.register(IEModCondition.Serializer.INSTANCE);
-            MinecraftForge.EVENT_BUS.register(BeamHandler.class);
+            NeoForge.EVENT_BUS.register(BeamHandler.class);
         });
 
         // Register the mod itself to the event bus
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
         //MinecraftForge.EVENT_BUS.register(ArmorBoostEventHandler.class);
        /// MinecraftForge.EVENT_BUS.register(ArmorRemoveEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(HeavyWeaponEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(OceanWeaponEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(PiglinWeaponEventHandler.class);
+        NeoForge.EVENT_BUS.register(HeavyWeaponEventHandler.class);
+        NeoForge.EVENT_BUS.register(OceanWeaponEventHandler.class);
+        NeoForge.EVENT_BUS.register(PiglinWeaponEventHandler.class);
     }
     private void onConfigLoad(ModConfigEvent.Loading event) {
         if (event.getConfig().getType() == ModConfig.Type.SERVER) {
@@ -155,7 +155,7 @@ public class ScorchedGuns {
             FrameworkAPI.registerSyncedDataKey(ModSyncedDataKeys.BURSTCOUNT);
             FrameworkAPI.registerSyncedDataKey(ModSyncedDataKeys.ONBURSTCOOLDOWN);
             FrameworkAPI.registerSyncedDataKey(ModSyncedDataKeys.MELEE);
-            MinecraftForge.EVENT_BUS.register(TemporaryLightManager.class);
+            NeoForge.EVENT_BUS.register(TemporaryLightManager.class);
             // Register login data
             FrameworkAPI.registerLoginData(new ResourceLocation(Reference.MOD_ID, "network_gun_manager"), NetworkGunManager.LoginData::new);
             FrameworkAPI.registerLoginData(new ResourceLocation(Reference.MOD_ID, "custom_gun_manager"), CustomGunManager.LoginData::new);
@@ -191,7 +191,7 @@ public class ScorchedGuns {
             useEnergyGuns = Config.COMMON.gameplay.forceEnergyGuns.get();
 
           if (Config.COMMON.gameplay.improvedHitboxes.get()) {
-                MinecraftForge.EVENT_BUS.register(new BoundingBoxManager());
+                NeoForge.EVENT_BUS.register(new BoundingBoxManager());
             }
             try {
                 InputStream inputStream = ScorchedGuns.class.getClassLoader().getResourceAsStream("data/scguns/entity/cog_minion_item.json");

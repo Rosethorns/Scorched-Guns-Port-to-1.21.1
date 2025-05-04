@@ -9,11 +9,11 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import top.ribs.scguns.interfaces.IEnergyGun;
 
 import javax.annotation.Nullable;
@@ -40,7 +40,7 @@ public class AnimatedEnergyGunItem extends AnimatedGunItem implements IEnergyGun
 
             @Override
             public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-                return cap == ForgeCapabilities.ENERGY ? energy.cast() : LazyOptional.empty();
+                return cap == Capabilities.ENERGY ? energy.cast() : LazyOptional.empty();
             }
         };
     }
@@ -61,11 +61,11 @@ public class AnimatedEnergyGunItem extends AnimatedGunItem implements IEnergyGun
     }
 
     public int getEnergyStored(ItemStack stack) {
-        return stack.getCapability(ForgeCapabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
+        return stack.getCapability(Capabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
     }
 
     public int getMaxEnergyStored(ItemStack stack) {
-        return stack.getCapability(ForgeCapabilities.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
+        return stack.getCapability(Capabilities.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
     }
 
     @Override

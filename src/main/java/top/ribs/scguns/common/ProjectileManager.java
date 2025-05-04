@@ -2,7 +2,7 @@ package top.ribs.scguns.common;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.entity.projectile.ProjectileEntity;
 import top.ribs.scguns.init.ModEntities;
 import top.ribs.scguns.interfaces.IProjectileFactory;
@@ -42,7 +42,7 @@ public class ProjectileManager
      */
     public void registerFactory(Item ammo, IProjectileFactory factory)
     {
-        this.projectileFactoryMap.put(ForgeRegistries.ITEMS.getKey(ammo), factory);
+        this.projectileFactoryMap.put(NeoForgeRegistries.ITEMS.getKey(ammo), factory);
     }
 
     /**

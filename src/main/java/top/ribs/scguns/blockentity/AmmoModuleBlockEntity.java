@@ -21,9 +21,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import top.ribs.scguns.block.AmmoModuleBlock;
 import top.ribs.scguns.init.ModBlockEntities;
 
@@ -69,7 +69,7 @@ public class AmmoModuleBlockEntity extends RandomizableContainerBlockEntity {
         BlockPos adjacentPos = pos.relative(targetDirection);
         BlockEntity adjacentEntity = level.getBlockEntity(adjacentPos);
         if (adjacentEntity != null) {
-            adjacentEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+            adjacentEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(handler -> {
                 transferItemToInventory(ammoModule, handler);
             });
         }

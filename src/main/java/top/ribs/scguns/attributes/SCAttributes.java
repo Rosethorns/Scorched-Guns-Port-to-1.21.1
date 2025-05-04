@@ -2,13 +2,13 @@ package top.ribs.scguns.attributes;
 
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 import top.ribs.scguns.ScorchedGuns;
 
 public class SCAttributes {
-    public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, ScorchedGuns.MODID);
+    public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(NeoForgeRegistries.ATTRIBUTES, ScorchedGuns.MODID);
     public static final RegistryObject<Attribute> PROJECTILE_SPEED = ATTRIBUTES.register("projectile_speed",
             () -> new RangedAttribute("attribute.scguns.projectile_speed", 1.0, 0.01, 100.0)
                     .setSyncable(true)

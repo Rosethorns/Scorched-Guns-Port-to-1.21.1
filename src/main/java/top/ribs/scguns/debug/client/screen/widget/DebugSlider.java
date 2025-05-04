@@ -3,7 +3,7 @@ package top.ribs.scguns.debug.client.screen.widget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.gui.widget.ForgeSlider;
+import net.neoforged.neoforge.client.gui.widget.ExtendedSlider;
 import org.jetbrains.annotations.NotNull;
 import top.ribs.scguns.debug.IDebugWidget;
 
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 /**
  * Author: MrCrayfish
  */
-public class DebugSlider extends ForgeSlider implements IDebugWidget {
+public class DebugSlider extends ExtendedSlider implements IDebugWidget {
     private final Consumer<Double> callback;
 
     public DebugSlider(double minValue, double maxValue, double currentValue, double stepSize, int precision, Consumer<Double> callback) {

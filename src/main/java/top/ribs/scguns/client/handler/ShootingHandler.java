@@ -6,11 +6,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -305,7 +305,7 @@ public class ShootingHandler
             GunItem gunItem = (GunItem) heldItem.getItem();
             Gun modifiedGun = gunItem.getModifiedGun(heldItem);
 
-            if(MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
+            if(NeoForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                 return;
 
             if (gunItem instanceof AnimatedGunItem animatedGunItem) {
@@ -351,7 +351,7 @@ public class ShootingHandler
 
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageShoot(player));
 
-            MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
+            NeoForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
         }
     }
 

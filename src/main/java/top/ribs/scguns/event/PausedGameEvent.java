@@ -4,18 +4,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.AnimationController;
 import top.ribs.scguns.Reference;
-import top.ribs.scguns.ScorchedGuns;
 import top.ribs.scguns.common.BoundingBoxManager;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.common.ReloadType;
@@ -24,8 +22,6 @@ import top.ribs.scguns.item.GunItem;
 import top.ribs.scguns.item.animated.AnimatedGunItem;
 import top.ribs.scguns.network.PacketHandler;
 import top.ribs.scguns.network.message.C2SMessageReload;
-
-import static top.ribs.scguns.ScorchedGuns.LOGGER;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PausedGameEvent {
@@ -84,7 +80,7 @@ public class PausedGameEvent {
         wasGamePaused = isPaused;
     }
     @SubscribeEvent
-    public static void onWorldUnload(net.minecraftforge.event.level.LevelEvent.Unload event) {
+    public static void onWorldUnload(net.neoforged.neoforge.event.level.LevelEvent.Unload event) {
         BoundingBoxManager.clearDynamicBoxCache();
         TemporaryLightManager.cleanup((Level) event.getLevel());
     }

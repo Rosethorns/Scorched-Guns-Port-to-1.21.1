@@ -3,24 +3,20 @@ package top.ribs.scguns.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import top.ribs.scguns.block.AdvancedComposterBlock;
 import top.ribs.scguns.init.ModTags;
 import top.ribs.scguns.init.ModBlockEntities;
@@ -83,7 +79,7 @@ public class AdvancedComposterBlockEntity extends BlockEntity implements Worldly
 
     private void createOutputItems() {
         List<Item> possibleDrops = new ArrayList<>();
-        Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ModTags.Items.COMPOST_DROPS).forEach(possibleDrops::add);
+        Objects.requireNonNull(NeoForgeRegistries.ITEMS.tags()).getTag(ModTags.Items.COMPOST_DROPS).forEach(possibleDrops::add);
         if (possibleDrops.isEmpty()) {
             return;
         }
