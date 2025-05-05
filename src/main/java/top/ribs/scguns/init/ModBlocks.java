@@ -154,9 +154,9 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(3.0F)));
     public static final Holder<Block> ANTHRALITE_ORE = register("anthralite_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
     public static final Holder<Block> DEEPSLATE_ANTHRALITE_ORE = register("deepslate_anthralite_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
     public static final Holder<Block> SULFUR_BLOCK = registerBurnable("sulfur_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
@@ -220,13 +220,13 @@ public class ModBlocks {
                     .noOcclusion()));
 
     public static final Holder<Block> RICH_PHOSPHORITE = register("rich_phosphorite",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
                     .strength(2.0F), UniformInt.of(0, 1)));
     public static final Holder<Block> SULFUR_ORE = register("sulfur_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(0, 2)));
     public static final Holder<Block> DEEPSLATE_SULFUR_ORE = register("deepslate_sulfur_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(0, 2)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(0, 2)));
     public static final Holder<Block> NETHER_SULFUR_ORE = register("nether_sulfur_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_GOLD_ORE), UniformInt.of(0, 1)));
     public static final Holder<Block> VEHEMENT_COAL_ORE = register("vehement_coal_ore",
