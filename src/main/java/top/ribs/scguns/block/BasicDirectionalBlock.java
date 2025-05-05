@@ -48,6 +48,7 @@ public class BasicDirectionalBlock extends Block {
         return Shapes.block();
     }
 
+    //Use of override unlear, commented out until use case presents itself
     //@Override
     //public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
     //      if (state.getBlock() != newState.getBlock()) {
