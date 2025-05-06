@@ -5,6 +5,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 
-public class NiterGlassBlock extends AbstractGlassBlock {
+public class NiterGlassBlock extends TransparentBlock {
     public static final BooleanProperty TRANSPARENT = BooleanProperty.create("transparent");
 
     public NiterGlassBlock(BlockBehaviour.Properties properties) {

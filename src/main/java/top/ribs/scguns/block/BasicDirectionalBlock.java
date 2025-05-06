@@ -4,7 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
+//import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -48,11 +48,11 @@ public class BasicDirectionalBlock extends Block {
         return Shapes.block();
     }
 
-    //Use of override unlear, commented out until use case presents itself
-    //@Override
-    //public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-    //      if (state.getBlock() != newState.getBlock()) {
-    //          super.onRemove(state, world, pos, newState, isMoving);
-    //      }
-    //}
+//    Use of override unclear, commented out until use case presents itself
+//    @Override
+//    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+//          if (state.getBlock() != newState.getBlock()) {
+//              super.onRemove(state, world, pos, newState, isMoving);
+//          }
+//    }
 }

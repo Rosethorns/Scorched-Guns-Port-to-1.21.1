@@ -2,20 +2,24 @@ package top.ribs.scguns.init;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import top.ribs.scguns.Reference;
 import top.ribs.scguns.block.*;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -154,9 +158,9 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(3.0F)));
     public static final Holder<Block> ANTHRALITE_ORE = register("anthralite_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+            () -> new DropExperienceBlock(ConstantInt.of(0),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
     public static final Holder<Block> DEEPSLATE_ANTHRALITE_ORE = register("deepslate_anthralite_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
+            () -> new DropExperienceBlock(ConstantInt.of(0),BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
     public static final Holder<Block> SULFUR_BLOCK = registerBurnable("sulfur_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
@@ -220,17 +224,17 @@ public class ModBlocks {
                     .noOcclusion()));
 
     public static final Holder<Block> RICH_PHOSPHORITE = register("rich_phosphorite",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.STONE)
+            () -> new DropExperienceBlock(UniformInt.of(0, 1),BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
-                    .strength(2.0F), UniformInt.of(0, 1)));
+                    .strength(2.0F)));
     public static final Holder<Block> SULFUR_ORE = register("sulfur_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(0, 2)));
+            () -> new DropExperienceBlock(UniformInt.of(0, 2),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
     public static final Holder<Block> DEEPSLATE_SULFUR_ORE = register("deepslate_sulfur_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(0, 2)));
+            () -> new DropExperienceBlock(UniformInt.of(0, 2),BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
     public static final Holder<Block> NETHER_SULFUR_ORE = register("nether_sulfur_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_GOLD_ORE), UniformInt.of(0, 1)));
+            () -> new DropExperienceBlock(UniformInt.of(0, 1),BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_GOLD_ORE)));
     public static final Holder<Block> VEHEMENT_COAL_ORE = register("vehement_coal_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_GOLD_ORE), UniformInt.of(0, 1)));
+            () -> new DropExperienceBlock(UniformInt.of(0, 1),BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_GOLD_ORE)));
 
     public static final Holder<Block> NITER_LAYER = register("niter",
             () -> new NiterLayerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW)));
@@ -328,7 +332,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(2.0F)));
     public static final Holder<Block> PHOSPHORITE_BRICK_STAIRS = register("phosphorite_brick_stairs",
-            () -> new StairBlock(() -> ModBlocks.PHOSPHORITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            () -> new StairBlock(ModBlocks.PHOSPHORITE_BRICKS.value().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
                     .strength(2.0F)));
     public static final Holder<Block> PHOSPHORITE_BRICK_WALL = register("phosphorite_brick_wall",
@@ -354,7 +358,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(4.0F)));
     public static final Holder<Block> ASGHARIAN_BRICK_STAIRS = register("asgharian_brick_stairs",
-            () -> new StairBlock(() -> ModBlocks.ASGHARIAN_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            () -> new StairBlock(ModBlocks.ASGHARIAN_BRICKS.value().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .requiresCorrectToolForDrops()
                     .strength(4.0F)));
     public static final Holder<Block> ASGHARIAN_BRICK_WALL = register("asgharian_brick_wall",
@@ -372,22 +376,23 @@ public class ModBlocks {
                     .strength(2.0F)));
 
 
-    private static <T extends Block> Holder<T> register(String id, Supplier<T> blockSupplier) {
+    private static <T extends Block> DeferredHolder<Block, T> register(String id, Supplier<T> blockSupplier) {
         return register(id, blockSupplier, block1 -> new BlockItem(block1, new Item.Properties()));
     }
 
-    private static <T extends Block> Holder<T> register(String id, Supplier<T> blockSupplier, @Nullable Function<T, BlockItem> supplier) {
-        Holder<T> Holder = REGISTER.register(id, blockSupplier);
+    private static <T extends Block> DeferredHolder<Block,T> register(String id, Supplier<T> blockSupplier, @Nullable Function<T, BlockItem> supplier) {
+        DeferredHolder<Block, T> Holder = REGISTER.register(id, blockSupplier);
         if (supplier != null) {
             ModItems.REGISTER.register(id, () -> supplier.apply(Holder.get()));
         }
         return Holder;
     }
 
-    private static <T extends Block> Holder<T> registerBurnable(String id, Supplier<T> blockSupplier, int burnTime) {
+    private static <T extends Block> DeferredHolder<Block, T> registerBurnable(String id, Supplier<T> blockSupplier, int burnTime) {
         return register(id, blockSupplier, block -> new BlockItem(block, new Item.Properties()) {
             @Override
-            public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+            @ParametersAreNonnullByDefault
+            public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
                 return burnTime;
             }
         });
